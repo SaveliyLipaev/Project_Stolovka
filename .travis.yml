@@ -1,7 +1,7 @@
 language: csharp
 solution: "./XamarinMobileApp/XamarinMobileApp.sln"
 install:
-- travis_retry nuget restore -source "https://www.nuget.org/api/v3" ./XamarinMobileApp/XamarinMobileApp.sln
+- travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./XamarinMobileApp/XamarinMobileApp.sln
 script:
 - xbuild ./XamarinMobileApp/XamarinMobileApp.sln
 - mono ./XamarinMobileApp/packages/xunit.runner.console*/tools/xunit.console.exe ./XamarinMobileApp/XamarinMobileApp.Tests/bin/Debug/XamarinMobileApp.Tests.dll

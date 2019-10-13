@@ -8,4 +8,4 @@ install:
 - dotnet restore ./StolovkaWebAPI
 script:
 - dotnet build ./StolovkaWebAPI/StolovkaWebAPI.sln
-- dotnet test ./StolovkaWebAPI/StolovkaWebAPI.Tests/StolovkaWebAPI.Tests.csproj
+- dotnet test ./StolovkaWebAPI/StolovkaWebAPI.tests/StolovkaWebAPI.tests.csproj

@@ -5,56 +5,43 @@ using System.Threading.Tasks;
 
 namespace StolovkaWebAPI.Models
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork //: IDisposable
     {
-        //ЗДЕСЬ ПРОБЛЕМА!!!!!!!!
-        //private OrderContext db = new OrderContext();
-        private UserRepository userRepository;
-        private CanteenRepository canteenRepository;
+        // ЗДЕСЬ ПРОБЛЕМА!!!!!!!!
+        // private OrderContext db = new OrderContext();
+        //private UserRepository _userRepository;
+        //private CanteenRepository _canteenRepository;
 
-        public UserRepository Users
-        {
-            get
-            {
-                if (userRepository == null)
-                    userRepository = new UserRepository(db);
-                return userRepository;
-            }
-        }
+        //public UserRepository Users
+        //{
+        //    get { return _userRepository ?? (_userRepository = new UserRepository(db)); }
+        //}
 
-        public CanteenRepository Canteens
-        {
-            get
-            {
-                if (canteenRepository == null)
-                    canteenRepository = new CanteenRepository(db);
-                return canteenRepository;
-            }
-        }
+        //public CanteenRepository Canteens
+        //{
+        //    get { return _canteenRepository ?? (_canteenRepository = new CanteenRepository(db)); }
+        //}
 
-        public void Save()
-        {
-            db.SaveChanges();
-        }
+        //public void Save()
+        //{
+        //    db.SaveChanges();
+        //}
 
-        private bool disposed = false;
+        //private bool disposed = false;
 
-        public virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    db.Dispose();
-                }
-                this.disposed = true;
-            }
-        }
+        //public virtual void Dispose(bool disposing)
+        //{
+        //    if (!this.disposed)
+        //    {
+        //        if (disposing) db.Dispose();
+        //        this.disposed = true;
+        //    }
+        //}
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        //public void Dispose()
+        //{
+        //    Dispose(true);
+        //    GC.SuppressFinalize(this);
+        //}
     }
 }

@@ -1,6 +1,6 @@
 language: csharp
 mono: none
-dotnet: 3.0.0
+dotnet: 3.0.100
 install:
 - travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./XamarinMobileApp/XamarinMobileApp.sln
 - dotnet restore

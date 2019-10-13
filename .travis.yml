@@ -2,7 +2,7 @@ language: csharp
 mono: none
 dotnet: 3.0.100
 install:
-- dotnet restore
+- dotnet restore ./StolovkaWebAPI
 script:
 - xbuild ./XamarinMobileApp/XamarinMobileApp.sln
 - xbuild ./StolovkaWebAPI/StolovkaWebAPI.sln

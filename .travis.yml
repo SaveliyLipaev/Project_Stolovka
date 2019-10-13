@@ -1,6 +1,9 @@
 language: csharp
 mono: none
 dotnet: 3.0.100
+before_install:
+- sudo apt-get update
+- sudo apt-get install mono-complete mono-xbuild
 install:
 - dotnet restore ./StolovkaWebAPI
 script:

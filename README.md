@@ -16,7 +16,7 @@ Semester project, we make sure that children do not starve in queues
 	- Использовать микросервисную архитектуру и принципы *REST API*
 4.  Мобильное приложение для iOS (?) и Android на **Xamarin.Forms**
 
--  Позаботится о безопасности приложения -- Google: каких ошибок стоит избегать? (*)
+-  Позаботиться о безопасности приложения -- Google: каких ошибок стоит избегать? (*)
 
 ### MVP: Написать андроид приложение на Xamarin.Forms + ASP.NET Web API
 ### Backend: на ASP.NET MVC

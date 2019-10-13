@@ -1,6 +1,4 @@
 language: csharp
-solution: "./XamarinMobileApp/XamarinMobileApp.sln"
-solution: "./StolovkaWebAPI/StolovkaWebAPI.sln"
 mono: none
 dotnet: 3.0.0
 install:

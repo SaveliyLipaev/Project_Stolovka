@@ -21,8 +21,7 @@ namespace StolovkaWebAPI.Models
         {
             try
             {
-                return await _context.Users
-                        .Find(_ => true).ToListAsync();
+                return await _context.Users.Find(_ => true).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -32,15 +31,13 @@ namespace StolovkaWebAPI.Models
         }
 
         // query after Id or InternalId (BSonId value)
-        //
         public async Task<User> GetItem(string id)
         {
             try
             {
                 ObjectId internalId = GetInternalId(id);
-                return await _context.Users
-                                .Find(Item => Item.Id == id
-                                        || Item.InternalId == internalId)
+                return await _context.Users.Find(Item => Item.Id == id
+                          || Item.InternalId == internalId)
                                 .FirstOrDefaultAsync();
             }
             catch (Exception ex)
@@ -53,8 +50,11 @@ namespace StolovkaWebAPI.Models
         private ObjectId GetInternalId(string id)
         {
             ObjectId internalId;
+
             if (!ObjectId.TryParse(id, out internalId))
+            {
                 internalId = ObjectId.Empty;
+            }
 
             return internalId;
         }
@@ -80,8 +80,7 @@ namespace StolovkaWebAPI.Models
                     = await _context.Users.DeleteOneAsync(
                         Builders<User>.Filter.Eq("Id", id));
 
-                return actionResult.IsAcknowledged
-                    && actionResult.DeletedCount > 0;
+                return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
             }
             catch (Exception ex)
             {
@@ -99,8 +98,8 @@ namespace StolovkaWebAPI.Models
                                     .ReplaceOneAsync(n => n.Id.Equals(id)
                                             , item
                                             , new UpdateOptions { IsUpsert = true });
-                return actionResult.IsAcknowledged
-                    && actionResult.ModifiedCount > 0;
+
+                return actionResult.IsAcknowledged && actionResult.ModifiedCount > 0;
             }
             catch (Exception ex)
             {
@@ -116,8 +115,7 @@ namespace StolovkaWebAPI.Models
                 DeleteResult actionResult
                     = await _context.Users.DeleteManyAsync(new BsonDocument());
 
-                return actionResult.IsAcknowledged
-                    && actionResult.DeletedCount > 0;
+                return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
             }
             catch (Exception ex)
             {

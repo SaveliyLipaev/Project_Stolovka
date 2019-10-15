@@ -21,8 +21,7 @@ namespace StolovkaWebAPI.Models
         {
             try
             {
-                return await _context.Canteens
-                        .Find(_ => true).ToListAsync();
+                return await _context.Canteens.Find(_ => true).ToListAsync();
             }
             catch (Exception ex)
             {
@@ -32,16 +31,14 @@ namespace StolovkaWebAPI.Models
         }
 
         // query after Id or InternalId (BSonId value)
-        //
         public async Task<Canteen> GetItem(string id)
         {
             try
             {
                 ObjectId internalId = GetInternalId(id);
-                return await _context.Canteens
-                                .Find(Item => Item.Id == id
-                                        || Item.InternalId == internalId)
-                                .FirstOrDefaultAsync();
+                return await _context.Canteens.Find(Item => 
+                    Item.Id == id || Item.InternalId == internalId)
+                    .FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
@@ -54,7 +51,9 @@ namespace StolovkaWebAPI.Models
         {
             ObjectId internalId;
             if (!ObjectId.TryParse(id, out internalId))
+            {
                 internalId = ObjectId.Empty;
+            }
 
             return internalId;
         }
@@ -80,8 +79,7 @@ namespace StolovkaWebAPI.Models
                     = await _context.Canteens.DeleteOneAsync(
                         Builders<Canteen>.Filter.Eq("Id", id));
 
-                return actionResult.IsAcknowledged
-                    && actionResult.DeletedCount > 0;
+                return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
             }
             catch (Exception ex)
             {
@@ -99,8 +97,8 @@ namespace StolovkaWebAPI.Models
                                     .ReplaceOneAsync(n => n.Id.Equals(id)
                                             , item
                                             , new UpdateOptions { IsUpsert = true });
-                return actionResult.IsAcknowledged
-                    && actionResult.ModifiedCount > 0;
+
+                return actionResult.IsAcknowledged && actionResult.ModifiedCount > 0;
             }
             catch (Exception ex)
             {
@@ -116,8 +114,7 @@ namespace StolovkaWebAPI.Models
                 DeleteResult actionResult
                     = await _context.Canteens.DeleteManyAsync(new BsonDocument());
 
-                return actionResult.IsAcknowledged
-                    && actionResult.DeletedCount > 0;
+                return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
             }
             catch (Exception ex)
             {

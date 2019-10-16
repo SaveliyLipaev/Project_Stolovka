@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StolovkaWebAPI.Models
 {
-    public class CanteenRepository : IRepository<Canteen>
+    public class CanteenRepository : ICanteenRepository
     {
         private readonly CanteenContext _context = null;
 

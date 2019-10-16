@@ -34,6 +34,9 @@ namespace StolovkaWebAPI
                 options.Database = this.Configuration.GetSection("MongoConnection:Database").Value;
             });
 
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ICanteenRepository, CanteenRepository>();
+
             services.AddControllers();
         }
 

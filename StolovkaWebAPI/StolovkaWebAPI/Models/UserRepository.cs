@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StolovkaWebAPI.Models
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository : IUserRepository
     {
         private readonly UserContext _context = null;
 

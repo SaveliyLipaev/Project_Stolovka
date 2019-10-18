@@ -1,12 +1,12 @@
-﻿using Microsoft.Extensions.Options;
-using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace StolovkaWebAPI.Models
+﻿namespace StolovkaWebAPI.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.Extensions.Options;
+    using MongoDB.Driver;
+
     public class CanteenContext
     {
         private readonly IMongoDatabase _database = null;

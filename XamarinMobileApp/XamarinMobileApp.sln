@@ -7,15 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinMobileApp.Android", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinMobileApp.iOS", "XamarinMobileApp.iOS\XamarinMobileApp.iOS.csproj", "{8A24CE58-51C2-40FF-ABE1-CEBF552656AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinMobileApp", "XamarinMobileApp\XamarinMobileApp.csproj", "{6572AF6C-F509-42D4-BC2B-61BA87EE389F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinMobileApp", "XamarinMobileApp\XamarinMobileApp.csproj", "{6572AF6C-F509-42D4-BC2B-61BA87EE389F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{034CE36A-BAD1-43B3-A2CF-41BE3F94A75E}"
 	ProjectSection(SolutionItems) = preProject
-		..\.travis.yml = ..\.travis.yml
+		..\appveyor.yml = ..\appveyor.yml
 		..\Dockerfile = ..\Dockerfile
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinMobileApp.Tests", "XamarinMobileApp.Tests\XamarinMobileApp.Tests.csproj", "{5384040C-5311-4986-B692-5AA6DAA8920F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinMobileApp.Tests", "XamarinMobileApp.Tests\XamarinMobileApp.Tests.csproj", "{5384040C-5311-4986-B692-5AA6DAA8920F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -37,7 +37,7 @@ namespace StolovkaWebAPI.Models
             {
                 ObjectId internalId = GetInternalId(id);
                 return await _context.Users.Find(Item => Item.Id == id
-                          || Item.InternalId == internalId)
+                          || Item.Id == id)
                                 .FirstOrDefaultAsync();
             }
             catch (Exception ex)

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StolovkaWebAPI.Models
 {
-    interface ICanteenRepository
+    public interface ICanteenRepository
     {
         Task<IEnumerable<Canteen>> GetAllItems();
 

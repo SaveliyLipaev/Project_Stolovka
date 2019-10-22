@@ -19,7 +19,6 @@ namespace StolovkaWebAPI.Controllers
         {
             _userRepository.AddItem(new User()
             {
-                Id = "1",
                 FirstName = "Alex",
                 LastName = "ass",
                 PhoneNumber = "933333",

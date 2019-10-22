@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace StolovkaWebAPI.Models
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
         Task<IEnumerable<User>> GetAllItems();
 

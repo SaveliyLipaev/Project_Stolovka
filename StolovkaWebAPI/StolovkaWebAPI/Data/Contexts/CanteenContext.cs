@@ -24,7 +24,7 @@
         {
             get
             {
-                return _database.GetCollection<Canteen>("Canteen");
+                return _database.GetCollection<Canteen>("Canteens");
             }
         }
     }

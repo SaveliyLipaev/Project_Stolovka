@@ -21,6 +21,5 @@ namespace StolovkaWebAPI.Models
         public DateTime OpenHours { get; set; }
 
         public Menu Menu { get; set; }
-        public ObjectId InternalId { get; internal set; }
     }
 }

@@ -19,7 +19,5 @@ namespace StolovkaWebAPI.Models
 
         public string PhoneNumber { get; set; }
 
-        public Card[] Card { get; set; }
-        public ObjectId InternalId { get; internal set; }
     }
 }

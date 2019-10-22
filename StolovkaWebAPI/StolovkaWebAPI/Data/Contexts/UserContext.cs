@@ -25,7 +25,7 @@ namespace StolovkaWebAPI.Models
         {
             get
             {
-                return _database.GetCollection<User>("User");
+                return _database.GetCollection<User>("Users");
             }
         }
     }

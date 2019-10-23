@@ -25,7 +25,7 @@ namespace StolovkaWebAPI.Models
             }
             catch (Exception ex)
             {
-                // log or manage the exception
+                // log or manage the exception  
                 throw ex;
             }
         }

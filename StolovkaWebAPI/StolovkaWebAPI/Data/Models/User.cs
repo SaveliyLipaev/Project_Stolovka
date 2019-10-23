@@ -19,5 +19,6 @@ namespace StolovkaWebAPI.Models
 
         public string PhoneNumber { get; set; }
 
+        public Card[] Cards { get; set; }
     }
 }

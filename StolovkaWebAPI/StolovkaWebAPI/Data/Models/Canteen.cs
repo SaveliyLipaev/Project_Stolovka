@@ -17,9 +17,10 @@ namespace StolovkaWebAPI.Models
 
         public string Address { get; set; }
 
-        [BsonDateTimeOptions]
-        public DateTime OpenHours { get; set; }
+        public string OpenHours { get; set; }
 
-        public Menu Menu { get; set; }
+        public string CloseHours { get; set; }
+
+        public Menu[] Menu { get; set; }
     }
 }

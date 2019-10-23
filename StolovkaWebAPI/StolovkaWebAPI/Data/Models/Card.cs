@@ -9,10 +9,6 @@ namespace StolovkaWebAPI.Models
 {
     public class Card
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
-
         public string Expires { get; set; }
 
         public string CardHolder { get; set; }

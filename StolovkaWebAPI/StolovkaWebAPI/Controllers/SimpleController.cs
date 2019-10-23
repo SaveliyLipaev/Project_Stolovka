@@ -17,13 +17,6 @@ namespace StolovkaWebAPI.Controllers
         [HttpGet]
         public int Get()
         {
-            _userRepository.AddItem(new User()
-            {
-                FirstName = "Alex",
-                LastName = "ass",
-                PhoneNumber = "933333",
-            });
-
             return 1;
         }
     }

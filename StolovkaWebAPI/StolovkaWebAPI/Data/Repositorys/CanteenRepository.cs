@@ -30,32 +30,18 @@ namespace StolovkaWebAPI.Models
             }
         }
 
-        // query after Id or InternalId (BSonId value)
         public async Task<Canteen> GetItem(string id)
         {
             try
             {
-                ObjectId internalId = GetInternalId(id);
-                return await _context.Canteens.Find(Item => 
-                    Item.Id == id || Item.Id == id)
-                    .FirstOrDefaultAsync();
+                return await _context.Canteens.Find(Item =>
+                    Item.Id == id).FirstOrDefaultAsync();
             }
             catch (Exception ex)
             {
                 // log or manage the exception
                 throw ex;
             }
-        }
-
-        private ObjectId GetInternalId(string id)
-        {
-            ObjectId internalId;
-            if (!ObjectId.TryParse(id, out internalId))
-            {
-                internalId = ObjectId.Empty;
-            }
-
-            return internalId;
         }
 
         public async Task AddItem(Canteen item)
@@ -94,7 +80,7 @@ namespace StolovkaWebAPI.Models
             {
                 ReplaceOneResult actionResult
                     = await _context.Canteens
-                                    .ReplaceOneAsync(n => n.Id.Equals(id)
+                                    .ReplaceOneAsync(new BsonDocument("Id", id)
                                             , item
                                             , new UpdateOptions { IsUpsert = true });
 

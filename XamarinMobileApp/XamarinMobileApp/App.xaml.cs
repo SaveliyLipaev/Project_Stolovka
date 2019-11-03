@@ -1,16 +1,27 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinMobileApp.Views;
 
 namespace XamarinMobileApp
 {
     public partial class App : Application
     {
+        public static bool IsUserLoggedIn { get; set; } = false; //пока всегда false, потом будем определять
+
         public App()
         {
+
             InitializeComponent();
 
-            MainPage = new MainPage();
+            if (!IsUserLoggedIn)
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+            else
+            {
+                //Тут будет страничка если пользователь уже авторизовался
+            }
         }
 
         protected override void OnStart()

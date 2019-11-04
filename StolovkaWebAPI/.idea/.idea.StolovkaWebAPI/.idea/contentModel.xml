@@ -14,7 +14,8 @@
     <e p="$PROJECT_DIR$/../Dockerfile" t="Include" />
     <e p="$PROJECT_DIR$/../README.md" t="Include" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
-      <e p="MongoIdentitySample.Mvc" t="IncludeRecursive">
+      <e p="Solution Items" t="Include" />
+      <e p="StolovkaWeb.Auth.Mvc" t="IncludeRecursive">
         <e p=".bowerrc" t="Include" />
         <e p="Controllers" t="Include">
           <e p="AccountController.cs" t="Include" />
@@ -47,7 +48,6 @@
             <e p="VerifyPhoneNumberViewModel.cs" t="Include" />
           </e>
         </e>
-        <e p="MongoIdentitySample.Mvc.csproj" t="IncludeRecursive" />
         <e p="Program.cs" t="Include" />
         <e p="Services" t="Include">
           <e p="IEmailSender.cs" t="Include" />
@@ -55,6 +55,7 @@
           <e p="MessageServices.cs" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
+        <e p="StolovkaWeb.Auth.Mvc.csproj" t="IncludeRecursive" />
         <e p="Views" t="Include">
           <e p="Account" t="Include">
             <e p="ConfirmEmail.cshtml" t="Include" />
@@ -74,12 +75,16 @@
             <e p="VerifyCode.cshtml" t="Include" />
           </e>
           <e p="Home" t="Include">
+            <e p="About.cshtml" t="Include" />
+            <e p="Contact.cshtml" t="Include" />
+            <e p="Error.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
           </e>
           <e p="Manage" t="Include">
             <e p="AddPhoneNumber.cshtml" t="Include" />
             <e p="ChangePassword.cshtml" t="Include" />
             <e p="DisplayRecoveryCodes.cshtml" t="Include" />
+            <e p="Error.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
             <e p="ManageLogins.cshtml" t="Include" />
             <e p="SetPassword.cshtml" t="Include" />
@@ -101,7 +106,7 @@
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.0" t="Include">
-              <e p="MongoIdentitySample.Mvc.AssemblyInfo.cs" t="Include" />
+              <e p="StolovkaWeb.Auth.Mvc.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
@@ -177,7 +182,6 @@
           </e>
         </e>
       </e>
-      <e p="Solution Items" t="Include" />
       <e p="StolovkaWebAPI" t="IncludeRecursive">
         <e p="Controllers" t="Include">
           <e p="SimpleController.cs" t="Include" />

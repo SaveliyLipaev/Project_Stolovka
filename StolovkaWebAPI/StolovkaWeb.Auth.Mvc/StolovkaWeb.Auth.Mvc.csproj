@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <PackageTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <UserSecretsId>aspnet-MongoIdentitySample.Mvc-95B15D82-54F6-4001-B4B0-6ADF4B1BB00E</UserSecretsId>
   </PropertyGroup>
 

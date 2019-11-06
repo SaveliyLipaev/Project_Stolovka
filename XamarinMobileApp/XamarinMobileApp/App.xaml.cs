@@ -7,21 +7,14 @@ namespace XamarinMobileApp
 {
     public partial class App : Application
     {
-        public static bool IsUserLoggedIn { get; set; } = false; //пока всегда false, потом будем определять
 
         public App()
         {
 
             InitializeComponent();
 
-            if (!IsUserLoggedIn)
-            {
-                MainPage = new NavigationPage(new LoginPage());
-            }
-            else
-            {
-                //Тут будет страничка если пользователь уже авторизовался
-            }
+            MainPage = new NavigationPage(new LoginPage());
+
         }
 
         protected override void OnStart()

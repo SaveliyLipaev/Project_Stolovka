@@ -29,7 +29,8 @@ namespace XamarinMobileApp.Views
                 Children = { _hintLabel }
             };
 
-            var providers = new[] { "VK" };
+            var providers = new[] {"VK", "Google" };
+
             foreach (var provider in providers)
             {
                 var loginButton = new Button
@@ -87,7 +88,6 @@ namespace XamarinMobileApp.Views
                     case LoginState.Success:
                         _hintLabel.Text = $"Hi {loginResult.FirstName}! Your email is {loginResult.Email}";
                         senderBtn.Text = $"Logout {senderBtn.AutomationId}";
-
                         _isAuthenticated = true;
                         break;
                     default:
@@ -106,7 +106,7 @@ namespace XamarinMobileApp.Views
                 case "vk":
                     return DependencyService.Get<IVkService>().Login();
                 default:
-                    throw new InvalidNavigationException();
+                    return DependencyService.Get<IOAuthService>().Login();
             }
         }
 
@@ -118,34 +118,9 @@ namespace XamarinMobileApp.Views
                     DependencyService.Get<IVkService>().Logout();
                     return;
                 default:
-                    throw new InvalidNavigationException();
+                    DependencyService.Get<IOAuthService>().Logout();
+                    return;
             }
         }
     }
 }
-
-
-//using System;
-//using Xamarin.Forms;
-
-//namespace XamarinMobileApp.Views
-//{
-//    public partial class LoginPage : ContentPage
-//    {
-//        public LoginPage()
-//        {
-//            InitializeComponent();
-//        }
-
-//        async void OnLoginButtonClicked(object sender, EventArgs args)
-//        {
-//            Navigation.InsertPageBefore(new MenuMainPage(), this);
-//            await Navigation.PopAsync();
-//        }
-
-//        async void OnSignUpButtonClicked(object sender, EventArgs args)
-//        {
-//            await Navigation.PushAsync(new SignUpPage());
-//        }
-//    }
-//}

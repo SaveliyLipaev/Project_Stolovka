@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using VKontakte;
+using Android.Content;
 
 namespace XamarinMobileApp.Droid
 {
@@ -28,6 +30,22 @@ namespace XamarinMobileApp.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        protected override async void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            bool vkResult;
+            var task = VKSdk.OnActivityResultAsync(requestCode, resultCode, data, out vkResult);
+
+            try
+            {
+                var token = await task;
+                // Get token
+            }
+            catch (Exception e)
+            {
+                // Handle exception
+            }
         }
     }
 }

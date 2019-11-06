@@ -19,10 +19,10 @@ namespace XamarinMobileApp.Droid
             _completionSource = new TaskCompletionSource<LoginResult>();
             var auth = new OAuth2Authenticator
             (
-                clientId: "504765177204-0fardf6duf3ve95mr558l4ljm5au7al8.apps.googleusercontent.com",
-                scope: string.Empty,
-                authorizeUrl: new Uri("https://accounts.google.com/o/oauth2/v2/auth"),
-                redirectUrl: new Uri("https://accounts.google.com/o/oauth2/v2/redirect_uri"),
+                clientId: "504765177204-1u5irp85sovk26tu9os66r6v3aem4kvg.apps.googleusercontent.com",
+                scope: "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.login",
+                authorizeUrl: new Uri("https://accounts.google.com/o/oauth2/auth"),
+                redirectUrl: new Uri("com.googleusercontent.apps.504765177204-1u5irp85sovk26tu9os66r6v3aem4kvg:/oauth2redirect"),
                 clientSecret: null,
                 accessTokenUrl: new Uri("https://accounts.google.com/o/oauth2/token"),
                 isUsingNativeUI: true

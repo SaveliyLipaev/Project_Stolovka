@@ -50,7 +50,6 @@ namespace StolovkaWeb.Auth.Mvc
                 )
                 .AddDefaultTokenProviders();
 
-            services.AddAuthentication().AddIdentityCookies();
             services.AddMvc();
 
             // Add application services.
@@ -61,9 +60,9 @@ namespace StolovkaWeb.Auth.Mvc
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-//            loggerFactory.AddConsole();
-//            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-//            loggerFactory.AddDebug();
+            // loggerFactory.AddConsole();
+            // loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            // loggerFactory.AddDebug();
 
             if (env.IsDevelopment())
             {
@@ -78,13 +77,11 @@ namespace StolovkaWeb.Auth.Mvc
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseCors();
-            
+
             app.UseAuthentication();
-            
             app.UseAuthorization();
-            
+
             // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
             app.UseEndpoints(endpoints =>
             {

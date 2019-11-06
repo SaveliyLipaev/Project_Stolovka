@@ -207,6 +207,13 @@
           </e>
           <e p="Settings.cs" t="Include" />
         </e>
+        <e p="Installers" t="Include">
+          <e p="IInstaller.cs" t="Include" />
+        </e>
+        <e p="Options" t="Include">
+          <e p="JwtSettings.cs" t="Include" />
+          <e p="MySwaggerOptions.cs" t="Include" />
+        </e>
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="launchSettings.json" t="Include" />

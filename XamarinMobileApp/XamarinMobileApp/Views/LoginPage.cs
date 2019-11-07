@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using XamarinMobileApp;
 
-namespace XamarinMobileApp.Views
+namespace XamarinMobileApp
 {
     public class LoginPage : ContentPage
     {
@@ -29,8 +28,7 @@ namespace XamarinMobileApp.Views
                 Children = { _hintLabel }
             };
 
-            var providers = new[] {"VK", "Google" };
-
+            var providers = new[] { "VK", "Microsoft" };
             foreach (var provider in providers)
             {
                 var loginButton = new Button
@@ -88,6 +86,7 @@ namespace XamarinMobileApp.Views
                     case LoginState.Success:
                         _hintLabel.Text = $"Hi {loginResult.FirstName}! Your email is {loginResult.Email}";
                         senderBtn.Text = $"Logout {senderBtn.AutomationId}";
+
                         _isAuthenticated = true;
                         break;
                     default:

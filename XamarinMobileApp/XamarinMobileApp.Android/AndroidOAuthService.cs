@@ -17,6 +17,7 @@ namespace XamarinMobileApp.Droid
         public Task<LoginResult> Login()
         {
             _completionSource = new TaskCompletionSource<LoginResult>();
+
             var auth = new OAuth2Authenticator
             (
                 clientId: "504765177204-1u5irp85sovk26tu9os66r6v3aem4kvg.apps.googleusercontent.com",
@@ -36,6 +37,8 @@ namespace XamarinMobileApp.Droid
             auth.Title = "Google";
 
             Forms.Context.StartActivity(auth.GetUI(Forms.Context));
+
+            AuthenticationState.Authenticator = auth;
 
             return _completionSource.Task;
         }

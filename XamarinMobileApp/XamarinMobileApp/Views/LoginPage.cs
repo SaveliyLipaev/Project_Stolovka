@@ -28,7 +28,7 @@ namespace XamarinMobileApp
                 Children = { _hintLabel }
             };
 
-            var providers = new[] { "VK", "Microsoft" };
+            var providers = new[] { "VK", "Google" };
             foreach (var provider in providers)
             {
                 var loginButton = new Button

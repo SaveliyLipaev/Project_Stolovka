@@ -18,6 +18,8 @@ namespace XamarinMobileApp.Droid
         {
             Instance = this;
 
+            global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, bundle);
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

@@ -92,8 +92,6 @@ namespace XamarinMobileApp.Droid
                 result.LoginState = LoginState.Success;
                 result.Email = jobject["email"]?.ToString();
                 result.FirstName = jobject["name"]?.ToString();
-                var userId = jobject["id"]?.ToString();
-                result.UserId = userId;
             }
             else
             {

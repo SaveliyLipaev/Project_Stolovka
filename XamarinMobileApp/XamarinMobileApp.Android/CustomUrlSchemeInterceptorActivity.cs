@@ -31,7 +31,7 @@ namespace XamarinMobileApp.Droid
             var uri = new Uri(Intent.Data.ToString());
 
             // Load redirectUrl page
-            AuthenticationState.Authenticator .OnPageLoading(uri);
+            AuthenticationState.Authenticator.OnPageLoading(uri);
 
             Finish();
         }

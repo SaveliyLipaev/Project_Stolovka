@@ -57,7 +57,6 @@ namespace XamarinMobileApp.Droid
             {
                 _loginResult.FirstName = account.OptString(@"first_name");
                 _loginResult.LastName = account.OptString(@"last_name");
-                _loginResult.ImageUrl = account.OptString(@"photo_400_orig");
                 _loginResult.LoginState = LoginState.Success;
                 SetResult(_loginResult);
             }

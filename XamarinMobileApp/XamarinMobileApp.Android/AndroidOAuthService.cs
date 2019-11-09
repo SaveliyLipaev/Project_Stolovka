@@ -82,7 +82,7 @@ namespace XamarinMobileApp.Droid
                 ExpireAt = expireAt
             };
 
-            var request = new OAuth2Request("GET", new Uri("https://www.googleapis.com/plus/v1/people/me"),
+            var request = new OAuth2Request("GET", new Uri("https://www.googleapis.com/oauth2/v2/userinfo"),
                 null, account);
             var response = await request.GetResponseAsync();
             if (response != null && response.StatusCode == HttpStatusCode.OK)
@@ -90,10 +90,8 @@ namespace XamarinMobileApp.Droid
                 var userJson = response.GetResponseText();
                 var jobject = JObject.Parse(userJson);
                 result.LoginState = LoginState.Success;
-                result.Email = jobject["emails"]?["preferred"].ToString();
-                result.FirstName = jobject["first_name"]?.ToString();
-                result.LastName = jobject["last_name"]?.ToString();
-                result.ImageUrl = jobject["picture"]?["data"]?["url"]?.ToString();
+                result.Email = jobject["email"]?.ToString();
+                result.FirstName = jobject["name"]?.ToString();
                 var userId = jobject["id"]?.ToString();
                 result.UserId = userId;
             }

@@ -1,31 +1,16 @@
 namespace XamarinMobileApp
 {
 	public enum Pages {
-		HotelInfo,
 		Menu,
 		Login,
-		ServiceList,
-		ServiceOrder,
-		RestaurantList,
-		RestaurantInfo,
-		RestaurantMealList,
-		MealOrder,
-		Cart,
-		FitnessList,
-		FitnessOrder,
-		GuideCategories,
-		PlaceList,
-		PlaceInfo,
-		ChatCategories,
-		Chat,
 		Profile,
 		ProfileEdit,
-		NotificationList,
-		NotificationInfo,
-		OrderHistory,
-		OrderInfo
-	}
-
+        Search,
+        Basket,
+        Favourites,
+        FoodMenu,
+        OrderPayment
+    }
 
 	public enum NavigationMode {
 		Normal,

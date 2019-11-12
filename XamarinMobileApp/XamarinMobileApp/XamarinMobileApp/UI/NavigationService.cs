@@ -153,9 +153,8 @@ namespace XamarinMobileApp.UI
 						//this title not visible in app
 						masterPage.Title = nameof(masterPage);
 						var detailPage = new NavigationPage(newPage);
-						Application.Current.MainPage = new MasterDetailPage {
-							Master = masterPage,
-							Detail = detailPage
+						Application.Current.MainPage = new TabbedPage {
+		
 						};
 					}
 					else

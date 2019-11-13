@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinMobileApp.Android", "XamarinMobileApp\XamarinMobileApp.Android\XamarinMobileApp.Android.csproj", "{935FD18B-D2C3-4A5E-A9B0-5ACA96BCC24E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinMobileApp", "XamarinMobileApp\XamarinMobileApp\XamarinMobileApp.csproj", "{40A49B26-BACB-44D4-870D-89A595515BD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinMobileApp", "XamarinMobileApp\XamarinMobileApp\XamarinMobileApp.csproj", "{40A49B26-BACB-44D4-870D-89A595515BD3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XamarinMobileApp.DAL", "XamarinMobileApp.DAL\XamarinMobileApp.DAL.csproj", "{2F2E912C-520E-4FA7-9B2A-C3712369BD55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{40A49B26-BACB-44D4-870D-89A595515BD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40A49B26-BACB-44D4-870D-89A595515BD3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40A49B26-BACB-44D4-870D-89A595515BD3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2F2E912C-520E-4FA7-9B2A-C3712369BD55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F2E912C-520E-4FA7-9B2A-C3712369BD55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F2E912C-520E-4FA7-9B2A-C3712369BD55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F2E912C-520E-4FA7-9B2A-C3712369BD55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

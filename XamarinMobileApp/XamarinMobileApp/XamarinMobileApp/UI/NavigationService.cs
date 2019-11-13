@@ -151,16 +151,20 @@ namespace XamarinMobileApp.UI
             {
                 try
                 {
-                    var profilePage = GetInitializedPage(XamarinMobileApp.Pages.Profile.ToString());
-                    var favouritesPage = GetInitializedPage(XamarinMobileApp.Pages.Favourites.ToString());
-                    var basketPage = GetInitializedPage(XamarinMobileApp.Pages.Basket.ToString());
-                    var searchPage = GetInitializedPage(XamarinMobileApp.Pages.Search.ToString());
+                    var profilePage = new NavigationPage(GetInitializedPage(XamarinMobileApp.Pages.Profile.ToString()));
+                    var favouritesPage = new NavigationPage(GetInitializedPage(XamarinMobileApp.Pages.Favourites.ToString()));
+                    var basketPage = new NavigationPage(GetInitializedPage(XamarinMobileApp.Pages.Basket.ToString()));
+                    var searchPage = new NavigationPage(GetInitializedPage(XamarinMobileApp.Pages.Search.ToString()));
                     //Xamarin.Forms return exception when master page title is null
                     //this title not visible in app
                     profilePage.Title = nameof(profilePage);
+                    profilePage.IconImageSource = "baseline_account_circle_black_24.png";
                     favouritesPage.Title = nameof(favouritesPage);
+                    favouritesPage.IconImageSource = "baseline_favorite_black_24.png";
                     basketPage.Title = nameof(basketPage);
+                    basketPage.IconImageSource = "baseline_shopping_basket_black_24.png";
                     searchPage.Title = nameof(searchPage);
+                    searchPage.IconImageSource = "baseline_search_black_24.png";
 
                     var tabbedPage = new Xamarin.Forms.TabbedPage();
 
@@ -169,11 +173,6 @@ namespace XamarinMobileApp.UI
                     tabbedPage.Children.Add(basketPage);
                     tabbedPage.Children.Add(profilePage);
                     tabbedPage.On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
-                    tabbedPage.BarTextColor = Color.Black;
-                    tabbedPage.UnselectedTabColor = Color.MediumVioletRed;
-                    tabbedPage.BackgroundColor = Color.Aqua;
-                    tabbedPage.BarBackgroundColor = Color.Azure;
-                    tabbedPage.SelectedTabColor = Color.Green;
        
                     Xamarin.Forms.Application.Current.MainPage = new NavigationPage(tabbedPage);
                 }

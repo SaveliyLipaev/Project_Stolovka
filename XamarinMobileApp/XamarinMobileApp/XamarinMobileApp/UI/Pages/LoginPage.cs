@@ -86,10 +86,8 @@ namespace XamarinMobileApp.UI.Pages
                             btn.IsEnabled = true;
                         break;
                     case LoginState.Success:
-                        _hintLabel.Text = $"Hi {loginResult.FirstName}! Your email is {loginResult.Email}  {loginResult.LastName}";
-                        senderBtn.Text = $"Logout {senderBtn.AutomationId}";
-
                         _isAuthenticated = true;
+                        NavigationService.Init();
                         break;
                     default:
                         _hintLabel.Text = "Failed: " + loginResult.ErrorString;

@@ -16,8 +16,7 @@ namespace XamarinMobileApp
 
             DialogService.Init(this);
             //DataServices.Init(true);
-            NavigationService.Init();
-            //MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()

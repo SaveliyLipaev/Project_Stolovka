@@ -172,6 +172,7 @@ namespace XamarinMobileApp.UI
                     tabbedPage.Children.Add(favouritesPage);
                     tabbedPage.Children.Add(basketPage);
                     tabbedPage.Children.Add(profilePage);
+                    tabbedPage.Title = "STOLOVKA";
                     tabbedPage.On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
        
                     Xamarin.Forms.Application.Current.MainPage = new NavigationPage(tabbedPage);

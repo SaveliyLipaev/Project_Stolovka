@@ -47,17 +47,15 @@ namespace XamarinMobileApp.UI
 			MessagingCenter.Subscribe<MessageBus, NavigationPushInfo>(this, Consts.NavigationPushMessage, NavigationPushCallback);
 			MessagingCenter.Subscribe<MessageBus, NavigationPopInfo>(this, Consts.NavigationPopMessage, NavigationPopCallback);
 		}
-	    public static void Init(XamarinMobileApp.Pages detail)
+	    public static void Init()
 	    {
-	        Instance.Initialize(detail);
+	        Instance.Initialize();
 	    }
 
-	    void Initialize(XamarinMobileApp.Pages page)
+	    void Initialize()
 	    {
-			var initPage  = GetInitializedPage(page.ToString());
-		    RootPush(initPage);
+		    RootPush();
 	    }
-
 	 
 		public static NavigationService Instance => LazyInstance.Value;
  
@@ -80,7 +78,7 @@ namespace XamarinMobileApp.UI
 		INavigation GetTopNavigation() {
 			var mainPage = Application.Current.MainPage;
 			if (mainPage is TabbedPage tabbedPage) {
-				if (tabbedPage.Detail is NavigationPage navigationPage) {
+				if (tabbedPage.CurrentPage is NavigationPage navigationPage) {
 					var modalStack = navigationPage.Navigation.ModalStack.OfType<NavigationPage>().ToList();
 					if (modalStack.Any()) {
 						return modalStack.LastOrDefault()?.Navigation;
@@ -103,9 +101,6 @@ namespace XamarinMobileApp.UI
 	            case NavigationMode.Modal:
 	                ModalPush(newPage, pushInfo.OnCompletedTask, pushInfo.NewNavigationStack);
 	                break;
-				case NavigationMode.RootPage:
-					RootPush(newPage, pushInfo.OnCompletedTask);
-					break;
 		        case NavigationMode.Custom:
 					CustomPush(newPage, pushInfo.OnCompletedTask);
 			        break;
@@ -145,7 +140,7 @@ namespace XamarinMobileApp.UI
 			});
 		}
 
-		void RootPush(Page newPage, TaskCompletionSource<bool> pushInfoOnCompletedTask = null) {
+		void RootPush(TaskCompletionSource<bool> pushInfoOnCompletedTask = null) {
 			Device.BeginInvokeOnMainThread(async () => {
 				try {
 					if (Application.Current.MainPage == null) {
@@ -168,21 +163,6 @@ namespace XamarinMobileApp.UI
                         tabbedPage.Children.Add(profilePage);
 
                         Application.Current.MainPage = tabbedPage;
-					}
-					else
-					if (Application.Current.MainPage is TabbedPage mp) {
-						mp.IsPresented = false;
-						await Task.Delay(250);
-						if (mp.Detail is NavigationPage navigationPage) {
-							var navigation = navigationPage.Navigation;
-							var navigationStack = navigationPage.Navigation.NavigationStack;
-							if (navigationStack.Any()) {
-								navigation.InsertPageBefore(newPage, navigationStack.FirstOrDefault());
-								await navigation.PopToRootAsync();
-							}
-						}
-					 
-						pushInfoOnCompletedTask?.SetResult(true);
 					}
 				}
 				catch (Exception e) {

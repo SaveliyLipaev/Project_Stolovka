@@ -1,7 +1,6 @@
 namespace XamarinMobileApp
 {
 	public enum Pages {
-		Menu,
 		Login,
 		Profile,
 		ProfileEdit,
@@ -15,7 +14,6 @@ namespace XamarinMobileApp
 	public enum NavigationMode {
 		Normal,
 		Modal,
-		RootPage,
 		Custom
 	}
 

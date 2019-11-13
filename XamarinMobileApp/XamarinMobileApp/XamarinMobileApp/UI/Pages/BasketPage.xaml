@@ -8,6 +8,7 @@
             <Label Text="BasketPage!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <Button Text="OrderPayment" Command="{Binding GoToOrderPaymentCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </pages:BasePage>

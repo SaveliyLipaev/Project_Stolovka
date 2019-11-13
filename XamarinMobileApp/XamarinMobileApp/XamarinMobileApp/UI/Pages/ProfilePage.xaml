@@ -8,6 +8,7 @@
             <Label Text="ProfilePage!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <Button Text="ProfileEdit" Command="{Binding GoToProfileEditCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </pages:BasePage>

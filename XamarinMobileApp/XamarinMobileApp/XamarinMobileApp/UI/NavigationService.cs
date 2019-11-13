@@ -162,7 +162,7 @@ namespace XamarinMobileApp.UI
                         tabbedPage.Children.Add(basketPage);
                         tabbedPage.Children.Add(profilePage);
 
-                        Application.Current.MainPage = tabbedPage;
+                        Application.Current.MainPage = new NavigationPage(tabbedPage);
 					}
 				}
 				catch (Exception e) {

@@ -40,6 +40,7 @@ namespace XamarinMobileApp.Droid
             UserDialogs.Init(() => (Activity)Forms.Context);
 
             Forms.Init(this, bundle);
+
             LoadApplication(new App());
         }
 
@@ -61,10 +62,15 @@ namespace XamarinMobileApp.Droid
             catch (Exception e)
             {
                 var vkException = e as VKException;
+
                 if (vkException == null || vkException.Error.ErrorCode != VKontakte.API.VKError.VkCanceled)
+                {
                     AndroidVkService.Instance.SetErrorResult(e.Message);
+                }
                 else
+                {
                     AndroidVkService.Instance.SetCanceledResult();
+                }
             }
         }
     }

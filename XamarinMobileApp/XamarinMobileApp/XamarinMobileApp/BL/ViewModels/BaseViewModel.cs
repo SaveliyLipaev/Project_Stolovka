@@ -136,6 +136,7 @@ namespace XamarinMobileApp.BL.ViewModels
             MessageBus.SendMessage(Consts.DialogHideLoadingMessage);
 
             var completedTask = new TaskCompletionSource<bool>();
+
             MessageBus.SendMessage(Consts.NavigationPushMessage,
                 new NavigationPushInfo
                 {
@@ -146,6 +147,7 @@ namespace XamarinMobileApp.BL.ViewModels
                     NewNavigationStack = newNavigationStack,
                     OnCompletedTask = completedTask,
                 });
+
             return completedTask.Task;
         }
 
@@ -174,11 +176,13 @@ namespace XamarinMobileApp.BL.ViewModels
         {
             ClearDialogs();
             var taskCompletionSource = new TaskCompletionSource<bool>();
+
             MessageBus.SendMessage(Consts.NavigationPopMessage, new NavigationPopInfo
             {
                 Mode = mode,
                 OnCompletedTask = taskCompletionSource
             });
+
             return taskCompletionSource.Task;
         }
 
@@ -194,6 +198,7 @@ namespace XamarinMobileApp.BL.ViewModels
                 NavigateBack(navigationMode);
                 return;
             }
+
             NavigateBack();
         }
 
@@ -210,6 +215,7 @@ namespace XamarinMobileApp.BL.ViewModels
         protected static Task ShowAlert(string title, string message, string cancel)
         {
             var tcs = new TaskCompletionSource<bool>();
+
             MessageBus.SendMessage(Consts.DialogAlertMessage,
                 new DialogAlertInfo
                 {
@@ -218,12 +224,14 @@ namespace XamarinMobileApp.BL.ViewModels
                     Cancel = cancel,
                     OnCompleted = () => tcs.SetResult(true)
                 });
+
             return tcs.Task;
         }
 
         protected static Task<string> ShowSheet(string title, string cancel, string destruction, string[] items)
         {
             var tcs = new TaskCompletionSource<string>();
+
             MessageBus.SendMessage(Consts.DialogSheetMessage,
                 new DialogSheetInfo
                 {
@@ -233,12 +241,14 @@ namespace XamarinMobileApp.BL.ViewModels
                     Items = items,
                     OnCompleted = s => tcs.SetResult(s)
                 });
+
             return tcs.Task;
         }
 
         protected static Task<bool> ShowQuestion(string title, string question, string positive, string negative)
         {
             var tcs = new TaskCompletionSource<bool>();
+
             MessageBus.SendMessage(Consts.DialogQuestionMessage,
                 new DialogQuestionInfo
                 {
@@ -248,12 +258,14 @@ namespace XamarinMobileApp.BL.ViewModels
                     Negative = negative,
                     OnCompleted = b => tcs.SetResult(b)
                 });
+
             return tcs.Task;
         }
 
         protected static Task<string> ShowEntryAlert(string title, string message, string cancel, string ok, string placeholder)
         {
             var tcs = new TaskCompletionSource<string>();
+
             MessageBus.SendMessage(Consts.DialogEntryMessage,
                 new DialogEntryInfo
                 {
@@ -265,6 +277,7 @@ namespace XamarinMobileApp.BL.ViewModels
                     OnCompleted = s => tcs.SetResult(s),
                     OnCancelled = () => tcs.SetResult(null)
                 });
+
             return tcs.Task;
         }
 
@@ -282,10 +295,14 @@ namespace XamarinMobileApp.BL.ViewModels
         ICommand SaveCommand(ICommand command, string propertyName)
         {
             if (string.IsNullOrEmpty(propertyName))
+            {
                 throw new ArgumentNullException(nameof(propertyName));
+            }
 
             if (!_cachedCommands.ContainsKey(propertyName))
+            {
                 _cachedCommands.TryAdd(propertyName, command);
+            }
 
             return command;
         }
@@ -293,7 +310,9 @@ namespace XamarinMobileApp.BL.ViewModels
         ICommand GetCommand(string propertyName)
         {
             if (string.IsNullOrEmpty(propertyName))
+            {
                 throw new ArgumentNullException(nameof(propertyName));
+            }
 
             return _cachedCommands.TryGetValue(propertyName, out var cachedCommand)
                 ? cachedCommand

@@ -64,7 +64,9 @@ namespace XamarinMobileApp.Droid
                 SetResult(_loginResult);
             }
             else
+            {
                 SetErrorResult(@"Unable to complete the request of user info");
+            }
         }
 
         public void SetErrorResult(string errorMessage)

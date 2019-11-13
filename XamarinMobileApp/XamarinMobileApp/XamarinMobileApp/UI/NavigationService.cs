@@ -40,7 +40,6 @@ namespace XamarinMobileApp.UI
         readonly Dictionary<string, Type> _pageTypes;
         readonly Dictionary<string, Type> _viewModelTypes;
 
-
         NavigationService()
         {
             _pageTypes = GetAssemblyPageTypes();
@@ -48,37 +47,39 @@ namespace XamarinMobileApp.UI
             MessagingCenter.Subscribe<MessageBus, NavigationPushInfo>(this, Consts.NavigationPushMessage, NavigationPushCallback);
             MessagingCenter.Subscribe<MessageBus, NavigationPopInfo>(this, Consts.NavigationPopMessage, NavigationPopCallback);
         }
+
         public static void Init()
         {
             Instance.Initialize();
         }
 
-        void Initialize()
+        private void Initialize()
         {
             RootPush();
         }
 
         public static NavigationService Instance => LazyInstance.Value;
 
-        void NavigationPushCallback(MessageBus bus, NavigationPushInfo navigationPushInfo)
+        private void NavigationPushCallback(MessageBus bus, NavigationPushInfo navigationPushInfo)
         {
             if (navigationPushInfo == null) throw new ArgumentNullException(nameof(navigationPushInfo));
+
             if (string.IsNullOrEmpty(navigationPushInfo.To)) throw new FieldAccessException(@"'To' page value should be set");
 
             Push(navigationPushInfo);
         }
 
-        void NavigationPopCallback(MessageBus bus, NavigationPopInfo navigationPopInfo)
+        private void NavigationPopCallback(MessageBus bus, NavigationPopInfo navigationPopInfo)
         {
             if (navigationPopInfo == null) throw new ArgumentNullException(nameof(navigationPopInfo));
+
             Pop(navigationPopInfo);
         }
 
-        #region NavigationService internals
-
-        INavigation GetTopNavigation()
+        private INavigation GetTopNavigation()
         {
             var mainPage = Xamarin.Forms.Application.Current.MainPage;
+
             if (mainPage is Xamarin.Forms.TabbedPage tabbedPage)
             {
                 if (tabbedPage.CurrentPage is NavigationPage navigationPage)
@@ -91,10 +92,11 @@ namespace XamarinMobileApp.UI
                     return navigationPage.Navigation;
                 }
             }
+
             return (mainPage as NavigationPage)?.Navigation;
         }
 
-        void Push(NavigationPushInfo pushInfo)
+        private void Push(NavigationPushInfo pushInfo)
         {
             var newPage = GetInitializedPage(pushInfo);
 
@@ -113,7 +115,8 @@ namespace XamarinMobileApp.UI
                     throw new NotImplementedException();
             }
         }
-        void NormalPush(Page newPage, TaskCompletionSource<bool> completed)
+
+        private void NormalPush(Page newPage, TaskCompletionSource<bool> completed)
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
@@ -128,7 +131,8 @@ namespace XamarinMobileApp.UI
                 }
             });
         }
-        void ModalPush(Page newPage, TaskCompletionSource<bool> completed, bool newNavigationStack = true)
+
+        private void ModalPush(Page newPage, TaskCompletionSource<bool> completed, bool newNavigationStack = true)
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
@@ -145,7 +149,7 @@ namespace XamarinMobileApp.UI
             });
         }
 
-        void RootPush(TaskCompletionSource<bool> pushInfoOnCompletedTask = null)
+        private void RootPush(TaskCompletionSource<bool> pushInfoOnCompletedTask = null)
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
@@ -185,11 +189,13 @@ namespace XamarinMobileApp.UI
             });
 
         }
-        void CustomPush(Page newPage, TaskCompletionSource<bool> pushInfoOnCompletedTask)
+
+        private void CustomPush(Page newPage, TaskCompletionSource<bool> pushInfoOnCompletedTask)
         {
             // TODO: Implement your own navigation stack manipulation using popInfo
         }
-        void Pop(NavigationPopInfo popInfo)
+
+        private void Pop(NavigationPopInfo popInfo)
         {
             switch (popInfo.Mode)
             {
@@ -206,7 +212,8 @@ namespace XamarinMobileApp.UI
                     throw new NotImplementedException();
             }
         }
-        void ModalPop(TaskCompletionSource<bool> completed)
+
+        private void ModalPop(TaskCompletionSource<bool> completed)
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
@@ -221,11 +228,13 @@ namespace XamarinMobileApp.UI
                 }
             });
         }
-        void CustomPop(TaskCompletionSource<bool> completed)
+
+        private void CustomPop(TaskCompletionSource<bool> completed)
         {
             // TODO: Implement your own navigation stack manipulation using popInfo
         }
-        void NormalPop(TaskCompletionSource<bool> completed)
+
+        private void NormalPop(TaskCompletionSource<bool> completed)
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
@@ -240,26 +249,27 @@ namespace XamarinMobileApp.UI
                 }
             });
         }
-        static string GetTypeBaseName(MemberInfo info)
+
+        private static string GetTypeBaseName(MemberInfo info)
         {
             if (info == null) throw new ArgumentNullException(nameof(info));
+
             return info.Name.Replace(@"Page", "").Replace(@"ViewModel", "");
         }
-        static Dictionary<string, Type> GetAssemblyPageTypes()
-        {
-            return typeof(BasePage).GetTypeInfo().Assembly.DefinedTypes
+
+        private static Dictionary<string, Type> GetAssemblyPageTypes() =>
+            typeof(BasePage).GetTypeInfo().Assembly.DefinedTypes
                 .Where(ti => ti.IsClass && !ti.IsAbstract && ti.Name.Contains(@"Page") && ti.BaseType.Name.Contains(@"Page"))
                 .ToDictionary(GetTypeBaseName, ti => ti.AsType());
-        }
-        static Dictionary<string, Type> GetAssemblyViewModelTypes()
-        {
-            return typeof(BaseViewModel).GetTypeInfo().Assembly.DefinedTypes
-                                        .Where(ti => ti.IsClass && !ti.IsAbstract && ti.Name.Contains(@"ViewModel") &&
-                                                     ti.BaseType.Name.Contains(@"ViewModel"))
-                                        .ToDictionary(GetTypeBaseName, ti => ti.AsType());
-        }
 
-        BasePage GetInitializedPage(string toName, Dictionary<string, object> navParams = null)
+        private static Dictionary<string, Type> GetAssemblyViewModelTypes() => 
+            typeof(BaseViewModel).GetTypeInfo().Assembly.DefinedTypes
+                .Where(ti => ti.IsClass && !ti.IsAbstract && ti.Name.Contains(@"ViewModel") &&
+                ti.BaseType.Name.Contains(@"ViewModel"))
+                .ToDictionary(GetTypeBaseName, ti => ti.AsType());
+     
+
+        private BasePage GetInitializedPage(string toName, Dictionary<string, object> navParams = null)
         {
             var page = GetPage(toName);
             var viewModel = GetViewModel(toName);
@@ -268,12 +278,10 @@ namespace XamarinMobileApp.UI
             return page;
         }
 
-        Page GetInitializedPage(NavigationPushInfo navigationPushInfo)
-        {
-            return GetInitializedPage(navigationPushInfo.To, navigationPushInfo.NavigationParams);
-        }
+        private Page GetInitializedPage(NavigationPushInfo navigationPushInfo) => 
+            GetInitializedPage(navigationPushInfo.To, navigationPushInfo.NavigationParams);
 
-        BasePage GetPage(string pageName)
+        private BasePage GetPage(string pageName)
         {
             if (!_pageTypes.ContainsKey(pageName)) throw new KeyNotFoundException($@"Page for {pageName} not found");
             BasePage page;
@@ -291,9 +299,10 @@ namespace XamarinMobileApp.UI
             return page;
         }
 
-        BaseViewModel GetViewModel(string pageName)
+        private BaseViewModel GetViewModel(string pageName)
         {
             if (!_viewModelTypes.ContainsKey(pageName)) throw new KeyNotFoundException($@"ViewModel for {pageName} not found");
+
             BaseViewModel viewModel;
             try
             {
@@ -306,11 +315,7 @@ namespace XamarinMobileApp.UI
 
             return viewModel;
         }
-
-        #endregion
     }
-
-
 
     public class NavigationPushInfo
     {

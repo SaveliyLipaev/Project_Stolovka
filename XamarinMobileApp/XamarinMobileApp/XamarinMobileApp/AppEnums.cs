@@ -1,6 +1,7 @@
 namespace XamarinMobileApp
 {
-	public enum Pages {
+	public enum Pages 
+    {
 		Login,
 		Profile,
 		ProfileEdit,
@@ -11,13 +12,15 @@ namespace XamarinMobileApp
         OrderPayment
     }
 
-	public enum NavigationMode {
+	public enum NavigationMode 
+    {
 		Normal,
 		Modal,
 		Custom
 	}
 
-	public enum PageState {
+	public enum PageState 
+    {
 		Clean,
 		Loading,
 		Normal,

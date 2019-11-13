@@ -5,44 +5,56 @@ using Xamarin.Forms;
 
 namespace XamarinMobileApp.UI.Pages
 {
-	public class BasePage : ContentPage, IDisposable {
+	public class BasePage : ContentPage, IDisposable 
+    {
 		protected BaseViewModel BaseViewModel => BindingContext as BaseViewModel;
 
-		
-		public void Dispose() {
+		public void Dispose() 
+        {
 			BaseViewModel?.Dispose();
 		}
 
-		protected override void OnParentSet() {
+		protected override void OnParentSet() 
+        {
 			base.OnParentSet();
-			if (Parent == null) {
+			if (Parent == null) 
+            {
 				Dispose();
 			}
 		}
 
-		protected override void OnAppearing() {
+		protected override void OnAppearing() 
+        {
 			base.OnAppearing();
+
 			Task.Run(async () => {
 				await Task.Delay(50); // Allow UI to handle events loop
-				if (BaseViewModel != null) {
+
+				if (BaseViewModel != null) 
+                {
 					await BaseViewModel.OnPageAppearing();
 					BaseViewModel.StartLoadData();
 				}
 			});
 		}
 
-		protected override void OnDisappearing() {
+		protected override void OnDisappearing() 
+        {
 			base.OnDisappearing();
+
 			Task.Run(async () => {
 				await Task.Delay(50); // Allow UI to handle events loop
-				if (BaseViewModel != null)
-					await BaseViewModel.OnPageDisappearing();
+
+                if (BaseViewModel != null)
+                {
+                    await BaseViewModel.OnPageDisappearing();
+                }
 			});
 		}
-
 	}
 
-    public class BasePage<T>: BasePage where T: BaseViewModel {
+    public class BasePage<T>: BasePage where T: BaseViewModel 
+    {
 	    public T ViewModel => BaseViewModel as T;
     }
 }

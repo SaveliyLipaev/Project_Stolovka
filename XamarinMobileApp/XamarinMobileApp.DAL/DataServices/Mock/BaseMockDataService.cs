@@ -47,11 +47,13 @@ namespace OrderKingCoreDemo.DAL.DataServices.Mock
 			return new RequestResult<List<T>>(result, result != null ? RequestStatus.Ok : RequestStatus.SerializationError);
 		}
 		
-		static Task Delay() {
+		static Task Delay() 
+        {
 			return Task.Delay(Randomizer.Next(100, 1000));
 		}
 
-		class ValueList<T> {
+		class ValueList<T> 
+        {
 			public List<T> Values { get; set; }
 		}
 	}

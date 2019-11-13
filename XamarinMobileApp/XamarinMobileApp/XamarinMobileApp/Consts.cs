@@ -4,7 +4,6 @@ namespace XamarinMobileApp
     {
 	    public const string NavigationPushMessage = @"NavigationPushMessage";
 	    public const string NavigationPopMessage = @"NavigationPopMessage";
-
 	    public const string DialogAlertMessage = @"DialogAlertMessage";
 	    public const string DialogSheetMessage = @"DialogSheetMessage";
 	    public const string DialogQuestionMessage = @"DialogQuestionMessage";

@@ -47,12 +47,15 @@ namespace XamarinMobileApp.Droid
         private async void AuthOnCompleted(object sender, AuthenticatorCompletedEventArgs authCompletedArgs)
         {
             if (!authCompletedArgs.IsAuthenticated || authCompletedArgs.Account == null)
+            {
                 SetResult(new LoginResult { LoginState = LoginState.Canceled });
+            }
             else
             {
                 var token = authCompletedArgs.Account.Properties.ContainsKey("access_token")
                     ? authCompletedArgs.Account.Properties["access_token"]
                     : null;
+
                 var expInString = authCompletedArgs.Account.Properties.ContainsKey("expires_in")
                     ? authCompletedArgs.Account.Properties["expires_in"]
                     : null;
@@ -85,7 +88,9 @@ namespace XamarinMobileApp.Droid
 
             var request = new OAuth2Request("GET", new Uri("https://www.googleapis.com/oauth2/v2/userinfo"),
                 null, account);
+
             var response = await request.GetResponseAsync();
+
             if (response != null && response.StatusCode == HttpStatusCode.OK)
             {
                 var userJson = response.GetResponseText();

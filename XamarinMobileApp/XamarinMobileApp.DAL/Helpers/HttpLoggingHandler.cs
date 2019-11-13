@@ -88,10 +88,12 @@ namespace OrderKingCoreDemo.DAL.Helpers
 			foreach (var header in resp.Headers)
 				outputBuilder.AppendLine($@"{msg} {header.Key}: {string.Join(@", ", header.Value)}");
 
-			if (resp.Content != null)
-			{
-				foreach (var header in resp.Content.Headers)
-					outputBuilder.AppendLine($@"{msg} {header.Key}: {string.Join(@", ", header.Value)}");
+            if (resp.Content != null)
+            {
+                foreach (var header in resp.Content.Headers)
+                {
+                    outputBuilder.AppendLine($@"{msg} {header.Key}: {string.Join(@", ", header.Value)}");
+                }
 
 				if (resp.Content is StringContent || IsTextBasedContentType(resp.Headers) || IsTextBasedContentType(resp.Content.Headers))
 				{
@@ -126,13 +128,17 @@ namespace OrderKingCoreDemo.DAL.Helpers
 			outputBuilder.AppendLine($@"{msg} Host: {req.RequestUri.Scheme}://{req.RequestUri.Host}");
 			outputBuilder.AppendLine($@"{msg} Uri: {req.RequestUri}");
 
-			foreach (var header in req.Headers)
-				outputBuilder.AppendLine($@"{msg} {header.Key}: {string.Join(@", ", header.Value)}");
+            foreach (var header in req.Headers)
+            {
+                outputBuilder.AppendLine($@"{msg} {header.Key}: {string.Join(@", ", header.Value)}");
+            }
 
 			if (req.Content != null)
 			{
-				foreach (var header in req.Content.Headers)
-					outputBuilder.AppendLine($@"{msg} {header.Key}: {string.Join(@", ", header.Value)}");
+                foreach (var header in req.Content.Headers)
+                {
+                    outputBuilder.AppendLine($@"{msg} {header.Key}: {string.Join(@", ", header.Value)}");
+                }
 
 				if (req.Content is StringContent || IsTextBasedContentType(req.Headers) || IsTextBasedContentType(req.Content.Headers))
 				{
@@ -150,8 +156,11 @@ namespace OrderKingCoreDemo.DAL.Helpers
 		bool IsTextBasedContentType(HttpHeaders headers)
 		{
 			IEnumerable<string> values;
-			if (!headers.TryGetValues(@"Content-Type", out values))
-				return false;
+            if (!headers.TryGetValues(@"Content-Type", out values))
+            {
+                return false;
+            }
+
 			var header = string.Join(@" ", values).ToLowerInvariant();
 
 			return _types.Any(t => header.Contains(t));

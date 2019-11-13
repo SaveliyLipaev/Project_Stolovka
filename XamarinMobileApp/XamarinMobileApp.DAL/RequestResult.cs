@@ -1,12 +1,14 @@
-
-namespace OrderKingCoreDemo.DAL {
-	public struct RequestResult<T> where T: class {
+namespace OrderKingCoreDemo.DAL 
+{
+	public struct RequestResult<T> where T: class 
+    {
 		public readonly string Message;
 		public readonly RequestStatus Status;
 		public readonly T Data;
 		public bool IsValid => Status == RequestStatus.Ok && Data != null;
 
-		public RequestResult(T data, RequestStatus status, string message = null) {
+		public RequestResult(T data, RequestStatus status, string message = null) 
+        {
 			Data = data;
 			Status = status;
 			Message = message;
@@ -15,12 +17,14 @@ namespace OrderKingCoreDemo.DAL {
 		public override string ToString() { return $@"Result: {Status}, Data: {Data}, Message: {Message}"; }
 	}
 
-	public struct RequestResult {
+	public struct RequestResult 
+    {
 		public readonly string Message;
 		public readonly RequestStatus Status;
 		public bool IsValid => Status == RequestStatus.Ok;
 
-		public RequestResult(RequestStatus status, string message = null) {
+		public RequestResult(RequestStatus status, string message = null)
+        {
 			Status = status;
 			Message = message;
 		}
@@ -29,7 +33,8 @@ namespace OrderKingCoreDemo.DAL {
 	}
 
 
-	public enum RequestStatus {
+	public enum RequestStatus
+    {
 		Unknown = 0,
 		Ok = 200,
 		NotModified = 304,

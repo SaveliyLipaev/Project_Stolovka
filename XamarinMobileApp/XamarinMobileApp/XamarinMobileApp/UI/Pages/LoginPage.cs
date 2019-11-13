@@ -56,11 +56,15 @@ namespace XamarinMobileApp.UI.Pages
                 _hintLabel.Text = "Unauthenticated";
 
                 var senderBtn = sender as Button;
-                if (senderBtn == null) return;
+                if (senderBtn == null)
+                {
+                    return;
+                }
 
                 Logout(senderBtn.AutomationId);
 
                 _isAuthenticated = false;
+
                 foreach (var btn in _loginButtons)
                 {
                     btn.IsEnabled = true;
@@ -70,20 +74,27 @@ namespace XamarinMobileApp.UI.Pages
             else
             {
                 var senderBtn = sender as Button;
-                if (senderBtn == null) return;
+                if (senderBtn == null)
+                {
+                    return;
+                }
 
                 _hintLabel.Text = "Login. Please wait";
                 var loginResult = await Login(senderBtn.AutomationId);
 
                 foreach (var btn in _loginButtons.Where(b => b != senderBtn))
+                {
                     btn.IsEnabled = false;
+                }
 
                 switch (loginResult.LoginState)
                 {
                     case LoginState.Canceled:
                         _hintLabel.Text = "Canceled";
                         foreach (var btn in _loginButtons.Where(b => b != senderBtn))
+                        {
                             btn.IsEnabled = true;
+                        }
                         break;
                     case LoginState.Success:
                         _isAuthenticated = true;
@@ -92,7 +103,9 @@ namespace XamarinMobileApp.UI.Pages
                     default:
                         _hintLabel.Text = "Failed: " + loginResult.ErrorString;
                         foreach (var btn in _loginButtons.Where(b => b != senderBtn))
+                        {
                             btn.IsEnabled = true;
+                        }
                         break;
                 }
             }

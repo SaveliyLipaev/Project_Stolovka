@@ -1,7 +1,4 @@
-﻿using OrderKingCoreDemo.DAL.DataServices;
-using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 using XamarinMobileApp.UI;
 using XamarinMobileApp.UI.Pages;
 
@@ -9,7 +6,6 @@ namespace XamarinMobileApp
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();

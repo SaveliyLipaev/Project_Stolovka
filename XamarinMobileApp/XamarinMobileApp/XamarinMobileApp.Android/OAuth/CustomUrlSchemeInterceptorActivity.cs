@@ -15,7 +15,6 @@ namespace XamarinMobileApp.Droid
     DataPath = "/oauth2redirect")]
     public class CustomUrlSchemeInterceptorActivity : Activity
     {
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);

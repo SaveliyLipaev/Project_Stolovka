@@ -2,7 +2,8 @@ using System;
 using Xamarin.Forms;
 
 namespace XamarinMobileApp.Helpers {
-	public class MessageBus {
+	public class MessageBus 
+    {
 		static readonly Lazy<MessageBus> LazyInstance = new Lazy<MessageBus>(() => new MessageBus(), true);
 		static MessageBus Instance => LazyInstance.Value;
 

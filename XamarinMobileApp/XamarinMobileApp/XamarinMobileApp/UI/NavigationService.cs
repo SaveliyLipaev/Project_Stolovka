@@ -170,6 +170,10 @@ namespace XamarinMobileApp.UI
                     tabbedPage.Children.Add(profilePage);
                     tabbedPage.On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
                     tabbedPage.BarTextColor = Color.Black;
+                    tabbedPage.UnselectedTabColor = Color.MediumVioletRed;
+                    tabbedPage.BackgroundColor = Color.Aqua;
+                    tabbedPage.BarBackgroundColor = Color.Azure;
+                    tabbedPage.SelectedTabColor = Color.Green;
        
                     Xamarin.Forms.Application.Current.MainPage = new NavigationPage(tabbedPage);
                 }

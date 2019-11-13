@@ -1,7 +1,9 @@
-﻿using System;
+﻿using OrderKingCoreDemo.DAL.DataServices;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XamarinMobileApp.UI;
+using XamarinMobileApp.UI.Pages;
 
 namespace XamarinMobileApp
 {
@@ -15,6 +17,7 @@ namespace XamarinMobileApp
             DialogService.Init(this);
             //DataServices.Init(true);
             NavigationService.Init();
+            //MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()

@@ -4,6 +4,9 @@ using XamarinMobileApp.Droid;
 using VKontakte;
 using VKontakte.API;
 using Xamarin.Forms;
+using XamarinMobileApp.BL.Services;
+using XamarinMobileApp.DAL.DataObjects;
+using System;
 
 [assembly: Dependency(typeof(AndroidVkService))]
 namespace XamarinMobileApp.Droid
@@ -41,7 +44,7 @@ namespace XamarinMobileApp.Droid
                 Email = token.Email,
                 Token = token.AccessToken,
                 UserId = token.UserId,
-                ExpireAt = Utils.FromMsDateTime(token.ExpiresIn),
+                ExpireAt = FromMsDateTime(token.ExpiresIn),
             };
 
             Task.Run(GetUserInfo);
@@ -79,6 +82,12 @@ namespace XamarinMobileApp.Droid
             _completionSource?.TrySetResult(result);
             _loginResult = null;
             _completionSource = null;
+        }
+
+        private static DateTimeOffset FromMsDateTime(long? longTimeMillis)
+        {
+            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            return longTimeMillis != null ? epoch.AddMilliseconds(longTimeMillis.Value) : DateTimeOffset.MinValue;
         }
     }
 }

@@ -8503,16 +8503,16 @@ namespace XamarinMobileApp.Droid
 			public const int avd_show_password = 2131165275;
 			
 			// aapt resource value: 0x7F07005C
-			public const int baseline_account_circle_black_24 = 2131165276;
+			public const int baseline_account_circle_black_36 = 2131165276;
 			
 			// aapt resource value: 0x7F07005D
-			public const int baseline_favorite_black_24 = 2131165277;
+			public const int baseline_favorite_black_36 = 2131165277;
 			
 			// aapt resource value: 0x7F07005E
-			public const int baseline_search_black_24 = 2131165278;
+			public const int baseline_search_black_36 = 2131165278;
 			
 			// aapt resource value: 0x7F07005F
-			public const int baseline_shopping_basket_black_24 = 2131165279;
+			public const int baseline_shopping_basket_black_36 = 2131165279;
 			
 			// aapt resource value: 0x7F070060
 			public const int design_bottom_navigation_item_background = 2131165280;

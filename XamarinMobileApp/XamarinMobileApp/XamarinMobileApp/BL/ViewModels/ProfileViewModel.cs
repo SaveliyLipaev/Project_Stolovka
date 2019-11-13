@@ -4,7 +4,7 @@ using System.Text;
 
 namespace XamarinMobileApp.BL.ViewModels
 {
-    class ProfileViewModel
+    class ProfileViewModel : BaseViewModel
     {
     }
 }

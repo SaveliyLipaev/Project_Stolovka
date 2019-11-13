@@ -4,7 +4,7 @@ using System.Text;
 
 namespace XamarinMobileApp.BL.ViewModels
 {
-    class SearchViewModel
+    class SearchViewModel : BaseViewModel
     {
     }
 }

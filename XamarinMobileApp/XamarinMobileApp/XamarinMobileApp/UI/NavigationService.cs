@@ -79,8 +79,8 @@ namespace XamarinMobileApp.UI
 
 		INavigation GetTopNavigation() {
 			var mainPage = Application.Current.MainPage;
-			if (mainPage is MasterDetailPage masterDetailPage) {
-				if (masterDetailPage.Detail is NavigationPage navigationPage) {
+			if (mainPage is TabbedPage tabbedPage) {
+				if (tabbedPage.Detail is NavigationPage navigationPage) {
 					var modalStack = navigationPage.Navigation.ModalStack.OfType<NavigationPage>().ToList();
 					if (modalStack.Any()) {
 						return modalStack.LastOrDefault()?.Navigation;
@@ -144,21 +144,33 @@ namespace XamarinMobileApp.UI
 				}
 			});
 		}
+
 		void RootPush(Page newPage, TaskCompletionSource<bool> pushInfoOnCompletedTask = null) {
 			Device.BeginInvokeOnMainThread(async () => {
 				try {
 					if (Application.Current.MainPage == null) {
-						var masterPage = GetInitializedPage(XamarinMobileApp.Pages.Menu.ToString());
-						//Xamarin.Forms return exception when master page title is null
-						//this title not visible in app
-						masterPage.Title = nameof(masterPage);
-						var detailPage = new NavigationPage(newPage);
-						Application.Current.MainPage = new TabbedPage {
-		
-						};
+						var profilePage = GetInitializedPage(XamarinMobileApp.Pages.Profile.ToString());
+                        var favouritesPage = GetInitializedPage(XamarinMobileApp.Pages.Favourites.ToString());
+                        var basketPage = GetInitializedPage(XamarinMobileApp.Pages.Basket.ToString());
+                        var searchPage = GetInitializedPage(XamarinMobileApp.Pages.Search.ToString());
+                        //Xamarin.Forms return exception when master page title is null
+                        //this title not visible in app
+                        profilePage.Title = nameof(profilePage);
+                        favouritesPage.Title = nameof(favouritesPage);
+                        basketPage.Title = nameof(basketPage);
+                        searchPage.Title = nameof(searchPage);
+
+                        var tabbedPage = new TabbedPage();
+
+                        tabbedPage.Children.Add(searchPage);
+                        tabbedPage.Children.Add(favouritesPage);
+                        tabbedPage.Children.Add(basketPage);
+                        tabbedPage.Children.Add(profilePage);
+
+                        Application.Current.MainPage = tabbedPage;
 					}
 					else
-					if (Application.Current.MainPage is MasterDetailPage mp) {
+					if (Application.Current.MainPage is TabbedPage mp) {
 						mp.IsPresented = false;
 						await Task.Delay(250);
 						if (mp.Detail is NavigationPage navigationPage) {

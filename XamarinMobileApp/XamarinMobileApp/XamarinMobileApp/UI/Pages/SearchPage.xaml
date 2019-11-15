@@ -5,9 +5,11 @@
              x:Class="XamarinMobileApp.UI.Pages.SearchPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="SearchPage!"
+            <Label Text="{Binding text}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <SearchBar x:Name="CanteenSearchBar"
+                       SearchCommand="{Binding buttonPresed}"/>
         </StackLayout>
     </ContentPage.Content>
 </pages:BasePage>

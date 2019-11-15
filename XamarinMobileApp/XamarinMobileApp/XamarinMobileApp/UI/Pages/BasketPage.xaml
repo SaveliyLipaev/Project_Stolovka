@@ -5,7 +5,7 @@
              x:Class="XamarinMobileApp.UI.Pages.BasketPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="BasketPage!"
+            <Label Text="Basket Page"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <Button Text="OrderPayment" Command="{Binding GoToOrderPaymentCommand}"/>

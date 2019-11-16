@@ -11,16 +11,12 @@ namespace XamarinMobileApp.BL.ViewModels
             set => Set(value);
         }
 
-        public ICommand but => MakeCommand(async () =>
+        public ICommand buttonPresed => MakeCommand(async () =>
         {
             count++;
             text = count.ToString();
         });
 
-        public ICommand button => MakeCommand(async () =>
-        {
-            count++;
-            text = count.ToString();
-        });
+
     }
 }

@@ -156,17 +156,18 @@ namespace XamarinMobileApp.UI
                 try
                 {
                     var profilePage = GetInitializedPage(XamarinMobileApp.Pages.Profile.ToString());
-                    var favouritesPage = GetInitializedPage(XamarinMobileApp.Pages.Favourites.ToString());
-                    var basketPage = GetInitializedPage(XamarinMobileApp.Pages.Basket.ToString());
-                    var searchPage = GetInitializedPage(XamarinMobileApp.Pages.Search.ToString());
-                    //Xamarin.Forms return exception when master page title is null
-                    //this title not visible in app
                     profilePage.Title = "Профиль";
                     profilePage.IconImageSource = "baseline_account_circle_black_36.png";
+
+                    var favouritesPage = GetInitializedPage(XamarinMobileApp.Pages.Favourites.ToString());
                     favouritesPage.Title = "Избранное";
                     favouritesPage.IconImageSource = "baseline_favorite_black_36.png";
+
+                    var basketPage = GetInitializedPage(XamarinMobileApp.Pages.Basket.ToString());
                     basketPage.Title = "Корзина";
                     basketPage.IconImageSource = "baseline_shopping_basket_black_36.png";
+
+                    var searchPage = GetInitializedPage(XamarinMobileApp.Pages.Search.ToString());
                     searchPage.Title = "Поиск";
                     searchPage.IconImageSource = "baseline_search_black_36.png";
 

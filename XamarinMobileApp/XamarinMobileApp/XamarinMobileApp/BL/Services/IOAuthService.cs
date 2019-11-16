@@ -5,7 +5,7 @@ namespace XamarinMobileApp.BL.Services
 {
     public interface IOAuthService
     {
-        Task<LoginResult> Login();
+        Task<LoginResultObject> Login();
         void Logout();
     }
 }

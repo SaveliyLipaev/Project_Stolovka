@@ -2,7 +2,7 @@
 
 namespace XamarinMobileApp.DAL.DataObjects
 {
-    public class LoginResult
+    public class LoginResultObject
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

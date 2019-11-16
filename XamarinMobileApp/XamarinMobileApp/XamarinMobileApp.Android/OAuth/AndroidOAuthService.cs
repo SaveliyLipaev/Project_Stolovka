@@ -13,11 +13,11 @@ namespace XamarinMobileApp.Droid
 {
     public class AndroidOAuthService : Java.Lang.Object, IOAuthService
     {
-        TaskCompletionSource<LoginResult> _completionSource;
+        TaskCompletionSource<LoginResultObject> _completionSource;
 
-        public Task<LoginResult> Login()
+        public Task<LoginResultObject> Login()
         {
-            _completionSource = new TaskCompletionSource<LoginResult>();
+            _completionSource = new TaskCompletionSource<LoginResultObject>();
 
             var auth = new OAuth2Authenticator
             (
@@ -48,7 +48,7 @@ namespace XamarinMobileApp.Droid
         {
             if (!authCompletedArgs.IsAuthenticated || authCompletedArgs.Account == null)
             {
-                SetResult(new LoginResult { LoginState = LoginState.Canceled });
+                SetResult(new LoginResultObject { LoginState = LoginState.Canceled });
             }
             else
             {
@@ -72,7 +72,7 @@ namespace XamarinMobileApp.Droid
             _completionSource = null;
         }
 
-        void SetResult(LoginResult result)
+        void SetResult(LoginResultObject result)
         {
             _completionSource?.TrySetResult(result);
             _completionSource = null;
@@ -80,7 +80,7 @@ namespace XamarinMobileApp.Droid
 
         async Task GetUserProfile(Account account, string token, DateTimeOffset expireAt)
         {
-            var result = new LoginResult
+            var result = new LoginResultObject
             {
                 Token = token,
                 ExpireAt = expireAt

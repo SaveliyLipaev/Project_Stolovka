@@ -111,7 +111,7 @@ namespace XamarinMobileApp.UI.Pages
             }
         }
 
-        Task<LoginResult> Login(string providerName)
+        Task<LoginResultObject> Login(string providerName)
         {
             switch (providerName.ToLower())
             {

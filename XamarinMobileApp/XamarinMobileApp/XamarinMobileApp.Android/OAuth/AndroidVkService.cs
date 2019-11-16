@@ -20,12 +20,12 @@ namespace XamarinMobileApp.Droid
             VKScope.Offline
         };
 
-        TaskCompletionSource<LoginResult> _completionSource;
-        LoginResult _loginResult;
+        TaskCompletionSource<LoginResultObject> _completionSource;
+        LoginResultObject _loginResult;
 
-        public Task<LoginResult> Login()
+        public Task<LoginResultObject> Login()
         {
-            _completionSource = new TaskCompletionSource<LoginResult>();
+            _completionSource = new TaskCompletionSource<LoginResultObject>();
             VKSdk.Login(Forms.Context as Activity, _permissions);
             return _completionSource.Task;
         }
@@ -39,7 +39,7 @@ namespace XamarinMobileApp.Droid
 
         public void SetUserToken(VKAccessToken token)
         {
-            _loginResult = new LoginResult
+            _loginResult = new LoginResultObject
             {
                 Email = token.Email,
                 Token = token.AccessToken,
@@ -71,15 +71,15 @@ namespace XamarinMobileApp.Droid
 
         public void SetErrorResult(string errorMessage)
         {
-            SetResult(new LoginResult { LoginState = LoginState.Failed, ErrorString = errorMessage });
+            SetResult(new LoginResultObject { LoginState = LoginState.Failed, ErrorString = errorMessage });
         }
 
         public void SetCanceledResult()
         {
-            SetResult(new LoginResult { LoginState = LoginState.Canceled });
+            SetResult(new LoginResultObject { LoginState = LoginState.Canceled });
         }
 
-        void SetResult(LoginResult result)
+        void SetResult(LoginResultObject result)
         {
             _completionSource?.TrySetResult(result);
             _loginResult = null;

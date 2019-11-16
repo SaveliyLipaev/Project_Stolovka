@@ -5,7 +5,7 @@ namespace XamarinMobileApp.BL.Services
 {
     public interface IVkService
     {
-        Task<LoginResult> Login();
+        Task<LoginResultObject> Login();
         void Logout();
     }
 }

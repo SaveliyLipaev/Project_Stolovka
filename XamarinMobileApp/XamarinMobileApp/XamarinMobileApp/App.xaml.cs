@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using XamarinMobileApp.DAL.DataServices;
 using XamarinMobileApp.UI;
 using XamarinMobileApp.UI.Pages;
 
@@ -11,7 +12,7 @@ namespace XamarinMobileApp
             InitializeComponent();
 
             DialogService.Init(this);
-            //DataServices.Init(true);
+            DataServices.Init(true);
             NavigationService.Init();
             //MainPage = new NavigationPage(new LoginPage());
         }

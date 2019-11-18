@@ -1,4 +1,4 @@
-namespace OrderKingCoreDemo.DAL 
+namespace XamarinMobileApp.DAL 
 {
 	public struct RequestResult<T> where T: class 
     {

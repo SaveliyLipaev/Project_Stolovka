@@ -29,12 +29,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Mock\CanteenSetInfo.json" />
+    <None Remove="Resources\Mock\MenuInfo.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Refit" Version="4.8.14" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Mock\" />
+    <EmbeddedResource Include="Resources\Mock\CanteenSetInfo.json" />
+    <EmbeddedResource Include="Resources\Mock\MenuInfo.json" />
   </ItemGroup>
 
 </Project>

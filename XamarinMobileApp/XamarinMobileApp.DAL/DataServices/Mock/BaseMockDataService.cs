@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using OrderKingCoreDemo.DAL.Helpers;
 
-namespace OrderKingCoreDemo.DAL.DataServices.Mock
+namespace XamarinMobileApp.DAL.DataServices.Mock
 {
 	public class BaseMockDataService
 	{

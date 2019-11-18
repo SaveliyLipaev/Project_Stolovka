@@ -43,7 +43,7 @@ namespace XamarinMobileApp.Droid
             {
                 Email = token.Email,
                 Token = token.AccessToken,
-                UserId = token.UserId,
+                Id = token.UserId,
                 ExpireAt = FromMsDateTime(token.ExpiresIn),
             };
 

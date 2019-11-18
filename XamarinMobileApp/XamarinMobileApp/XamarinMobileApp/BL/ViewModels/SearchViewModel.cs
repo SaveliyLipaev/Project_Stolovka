@@ -1,22 +1,35 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using XamarinMobileApp.DAL.DataObjects;
+using XamarinMobileApp.DAL.DataServices;
 
 namespace XamarinMobileApp.BL.ViewModels
 {
     class SearchViewModel : BaseViewModel
     {
-        private int count = 0;
-        public string text
+
+        public CanteenSetDataObject Canteens
         {
-            get => Get<string>();
+            get => Get<CanteenSetDataObject>();
             set => Set(value);
         }
 
-        public ICommand buttonPresed => MakeCommand(async () =>
+        protected override async Task LoadDataAsync()
         {
-            count++;
-            text = count.ToString();
+            if (!IsConnected)
+            {
+                State = PageState.NoInternet;
+                return;
+            }
+            var result = await DataServices.Canteens.GetAllCanteen(CancellationToken);
+            Canteens = result.Data;
+        }
+
+        public ICommand GoToMenu => MakeCommand((obj) =>
+        {
+            NavigateTo(Pages.FoodMenu, Pages.Search, navParams: new Dictionary<string, object> { { "canteen", obj } });
         });
-
-
     }
 }

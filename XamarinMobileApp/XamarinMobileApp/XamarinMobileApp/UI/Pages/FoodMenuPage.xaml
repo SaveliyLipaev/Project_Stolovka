@@ -4,17 +4,21 @@
              xmlns:b="clr-namespace:Pillar;assembly=Pillar"
              xmlns:c="clr-namespace:Pillar;assembly=Pillar"
              xmlns:pages="clr-namespace:XamarinMobileApp.UI.Pages;assembly=XamarinMobileApp"
-             x:Class="XamarinMobileApp.UI.Pages.FoodMenuPage">
+             x:Class="XamarinMobileApp.UI.Pages.FoodMenuPage"
+             Title="{Binding Canteen.Name}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <c:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="1, 1, 1, .8"
+                         AbsoluteLayout.LayoutFlags="All"
+                         Margin="0, 15, 0, 0">
             <ListView x:Name="dishList"
               HasUnevenRows="True"
-              ItemsSource="{Binding Menu.Menu}">
+              ItemsSource="{Binding Menu.Menu}"
+              RowHeight="100">
                 <ListView.Behaviors>
                     <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding com}" EventArgsConverter="{StaticResource ItemTappedConverter}" />
                 </ListView.Behaviors>
@@ -22,10 +26,33 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Name}" />
-                                    <Label Text="{Binding Price}" />
-                                </StackLayout>
+                                <Grid StyleId="ordersRoot">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="{Binding Name}" FontSize="Small"
+                                                   LineBreakMode="TailTruncation" />
+                                        <Label Text="{Binding Price, StringFormat='Цена: {0:C}'}"
+                                               FontSize="Micro" LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="2" Margin="10">
+                                        <Button Image="up_arrow.png" BackgroundColor="Transparent"
+                                             WidthRequest="30" HeightRequest="20" />
+                                        <AbsoluteLayout HorizontalOptions="Center">
+                                        <Label TextColor="Gray"
+                                                    AbsoluteLayout.LayoutBounds=".5, .5, AutoSize, AutoSize"
+                                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                                    Text="50"
+                                                    FontSize="12" />
+                                        </AbsoluteLayout>
+                                        <Button Image="arrow_down.png" BackgroundColor="Transparent"
+                                            WidthRequest="30" HeightRequest="20" />
+                                    </StackLayout>
+                                </Grid>
                             </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>

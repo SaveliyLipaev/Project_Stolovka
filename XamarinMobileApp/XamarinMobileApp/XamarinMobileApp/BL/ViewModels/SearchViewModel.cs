@@ -29,7 +29,7 @@ namespace XamarinMobileApp.BL.ViewModels
 
         public ICommand GoToMenu => MakeCommand((obj) =>
         {
-            NavigateTo(Pages.FoodMenu, Pages.Search, navParams: new Dictionary<string, object> { { "canteen", obj } });
+            NavigateTo(Pages.FoodMenu, null, navParams: new Dictionary<string, object> { { "canteen", obj } });
         });
     }
 }

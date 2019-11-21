@@ -15,7 +15,8 @@
             <SearchBar x:Name="CanteenSearchBar"/>
             <ListView x:Name="canteenList"
               HasUnevenRows="True"
-              ItemsSource="{Binding Canteens.Canteens}">
+              ItemsSource="{Binding Canteens.Canteens}"
+              RowHeight="100">
                 <ListView.Behaviors>
                     <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding GoToMenu}" EventArgsConverter="{StaticResource ItemTappedConverter}" />
                 </ListView.Behaviors>

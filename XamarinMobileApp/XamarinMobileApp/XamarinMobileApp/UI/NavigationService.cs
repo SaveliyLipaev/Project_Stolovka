@@ -48,14 +48,15 @@ namespace XamarinMobileApp.UI
             MessagingCenter.Subscribe<MessageBus, NavigationPopInfo>(this, Consts.NavigationPopMessage, NavigationPopCallback);
         }
 
-        public static void Init()
+        public static void Init(XamarinMobileApp.Pages detail)
         {
-            Instance.Initialize();
+            Instance.Initialize(detail);
         }
 
-        private void Initialize()
+        private void Initialize(XamarinMobileApp.Pages page)
         {
-            RootPush();
+            var initPage = GetInitializedPage(page.ToString());
+            RootPush(initPage);
         }
 
         public static NavigationService Instance => LazyInstance.Value;
@@ -80,9 +81,9 @@ namespace XamarinMobileApp.UI
         {
             var mainPage = Xamarin.Forms.Application.Current.MainPage;
 
-            if (mainPage is Xamarin.Forms.TabbedPage tabbedPage)
+            if (mainPage is MasterDetailPage masterDetailPage)
             {
-                if (tabbedPage.CurrentPage is NavigationPage navigationPage)
+                if (masterDetailPage.Detail is NavigationPage navigationPage)
                 {
                     var modalStack = navigationPage.Navigation.ModalStack.OfType<NavigationPage>().ToList();
                     if (modalStack.Any())
@@ -107,6 +108,9 @@ namespace XamarinMobileApp.UI
                     break;
                 case NavigationMode.Modal:
                     ModalPush(newPage, pushInfo.OnCompletedTask, pushInfo.NewNavigationStack);
+                    break;
+                case NavigationMode.RootPage:
+                    RootPush(newPage, pushInfo.OnCompletedTask);
                     break;
                 case NavigationMode.Custom:
                     CustomPush(newPage, pushInfo.OnCompletedTask);
@@ -149,38 +153,48 @@ namespace XamarinMobileApp.UI
             });
         }
 
-        private void RootPush(TaskCompletionSource<bool> pushInfoOnCompletedTask = null)
+        void RootPush(Page newPage, TaskCompletionSource<bool> pushInfoOnCompletedTask = null)
         {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
+            Device.BeginInvokeOnMainThread(async () => {
                 try
                 {
-                    var profilePage = GetInitializedPage(XamarinMobileApp.Pages.Profile.ToString());
-                    profilePage.Title = "Профиль";
-                    profilePage.IconImageSource = "baseline_account_circle_black_36.png";
+                    if (Xamarin.Forms.Application.Current.MainPage == null || Xamarin.Forms.Application.Current.MainPage is Log1)
+                    {
+                        if (newPage is Log1 lp)
+                        {
+                            Xamarin.Forms.Application.Current.MainPage = newPage;
+                        }
+                        else
+                        {
+                            var masterPage = GetInitializedPage(XamarinMobileApp.Pages.Menu.ToString());
+                            //Xamarin.Forms return exception when master page title is null
+                            //this title not visible in app
+                            masterPage.Title = nameof(masterPage);
+                            var detailPage = new NavigationPage(newPage);
+                            Xamarin.Forms.Application.Current.MainPage = new MasterDetailPage
+                            {
+                                Master = masterPage,
+                                Detail = detailPage
+                            };
+                        }
+                    }
+                    else if (Xamarin.Forms.Application.Current.MainPage is MasterDetailPage mp)
+                    {
+                        mp.IsPresented = false;
+                        await Task.Delay(250);
+                        if (mp.Detail is NavigationPage navigationPage)
+                        {
+                            var navigation = navigationPage.Navigation;
+                            var navigationStack = navigationPage.Navigation.NavigationStack;
+                            if (navigationStack.Any())
+                            {
+                                navigation.InsertPageBefore(newPage, navigationStack.FirstOrDefault());
+                                await navigation.PopToRootAsync();
+                            }
+                        }
 
-                    var favouritesPage = GetInitializedPage(XamarinMobileApp.Pages.Favourites.ToString());
-                    favouritesPage.Title = "Избранное";
-                    favouritesPage.IconImageSource = "baseline_favorite_black_36.png";
-
-                    var basketPage = GetInitializedPage(XamarinMobileApp.Pages.Basket.ToString());
-                    basketPage.Title = "Корзина";
-                    basketPage.IconImageSource = "baseline_shopping_basket_black_36.png";
-
-                    var searchPage = GetInitializedPage(XamarinMobileApp.Pages.Search.ToString());
-                    searchPage.Title = "Поиск";
-                    searchPage.IconImageSource = "baseline_search_black_36.png";
-
-                    var tabbedPage = new Xamarin.Forms.TabbedPage();
-
-                    tabbedPage.Children.Add(searchPage);
-                    tabbedPage.Children.Add(favouritesPage);
-                    tabbedPage.Children.Add(basketPage);
-                    tabbedPage.Children.Add(profilePage);
-                    tabbedPage.Title = "STOLOVKA";
-                    tabbedPage.On<Xamarin.Forms.PlatformConfiguration.Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
-       
-                    Xamarin.Forms.Application.Current.MainPage = new NavigationPage(tabbedPage);
+                        pushInfoOnCompletedTask?.SetResult(true);
+                    }
                 }
                 catch (Exception e)
                 {

@@ -2,12 +2,12 @@ namespace XamarinMobileApp
 {
 	public enum Pages 
     {
-		Login,
+        Login,
 		Profile,
 		ProfileEdit,
-        Search,
+        Canteens,
         Basket,
-        Favourites,
+        Menu,
         FoodMenu,
         OrderPayment
     }
@@ -16,8 +16,9 @@ namespace XamarinMobileApp
     {
 		Normal,
 		Modal,
-		Custom
-	}
+		Custom,
+        RootPage
+    }
 
 	public enum PageState 
     {

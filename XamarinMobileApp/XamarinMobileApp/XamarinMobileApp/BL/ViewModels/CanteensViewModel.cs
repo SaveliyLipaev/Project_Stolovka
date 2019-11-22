@@ -7,7 +7,7 @@ using XamarinMobileApp.DAL.DataServices;
 
 namespace XamarinMobileApp.BL.ViewModels
 {
-    class SearchViewModel : BaseViewModel
+    class CanteensViewModel : BaseViewModel
     {
 
         public CanteenSetDataObject Canteens

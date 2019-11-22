@@ -4,7 +4,7 @@
              xmlns:b="clr-namespace:Pillar;assembly=Pillar"
              xmlns:c="clr-namespace:Pillar;assembly=Pillar"
              xmlns:pages="clr-namespace:XamarinMobileApp.UI.Pages;assembly=XamarinMobileApp"
-             x:Class="XamarinMobileApp.UI.Pages.SearchPage">
+             x:Class="XamarinMobileApp.UI.Pages.CanteensPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <c:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />

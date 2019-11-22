@@ -8,13 +8,13 @@ using XamarinMobileApp.DAL.DataObjects;
 
 namespace XamarinMobileApp.UI.Pages
 {
-    public class LoginPage : ContentPage
+    public class Log1 : ContentPage
     {
         readonly Label _hintLabel;
         readonly List<Button> _loginButtons = new List<Button>();
         bool _isAuthenticated;
 
-        public LoginPage()
+        public Log1()
         {
             Title = "Stolovka Login";
 
@@ -98,7 +98,6 @@ namespace XamarinMobileApp.UI.Pages
                         break;
                     case LoginState.Success:
                         _isAuthenticated = true;
-                        NavigationService.Init();
                         break;
                     default:
                         _hintLabel.Text = "Failed: " + loginResult.ErrorString;

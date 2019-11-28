@@ -48,12 +48,12 @@ namespace XamarinMobileApp.UI
             MessagingCenter.Subscribe<MessageBus, NavigationPopInfo>(this, Consts.NavigationPopMessage, NavigationPopCallback);
         }
 
-        public static void Init(XamarinMobileApp.Pages detail)
+        public static void Init(XamarinMobileApp.Helpers.Pages detail)
         {
             Instance.Initialize(detail);
         }
 
-        private void Initialize(XamarinMobileApp.Pages page)
+        private void Initialize(XamarinMobileApp.Helpers.Pages page)
         {
             var initPage = GetInitializedPage(page.ToString());
             RootPush(initPage);
@@ -158,15 +158,15 @@ namespace XamarinMobileApp.UI
             Device.BeginInvokeOnMainThread(async () => {
                 try
                 {
-                    if (Xamarin.Forms.Application.Current.MainPage == null || Xamarin.Forms.Application.Current.MainPage is Log1)
+                    if (Xamarin.Forms.Application.Current.MainPage == null || Xamarin.Forms.Application.Current.MainPage is SignInPage)
                     {
-                        if (newPage is Log1 lp)
+                        if (newPage is SignInPage)
                         {
                             Xamarin.Forms.Application.Current.MainPage = newPage;
                         }
                         else
                         {
-                            var masterPage = GetInitializedPage(XamarinMobileApp.Pages.Menu.ToString());
+                            var masterPage = GetInitializedPage(XamarinMobileApp.Helpers.Pages.Menu.ToString());
                             //Xamarin.Forms return exception when master page title is null
                             //this title not visible in app
                             masterPage.Title = nameof(masterPage);

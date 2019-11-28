@@ -1,8 +1,8 @@
-namespace XamarinMobileApp
+namespace XamarinMobileApp.Helpers
 {
 	public enum Pages 
     {
-        Login,
+        SignIn,
 		Profile,
 		ProfileEdit,
         Canteens,

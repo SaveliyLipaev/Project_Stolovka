@@ -11,6 +11,9 @@
             <c:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="baseline_shopping_basket_black_36.png" Text="Basket" Command="{Binding GoToBasket}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout AbsoluteLayout.LayoutBounds="1, 1, 1, .8"
                          AbsoluteLayout.LayoutFlags="All"
@@ -19,14 +22,11 @@
               HasUnevenRows="True"
               ItemsSource="{Binding Menu.Menu}"
               RowHeight="100">
-                <ListView.Behaviors>
-                    <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding com}" EventArgsConverter="{StaticResource ItemTappedConverter}" />
-                </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <Grid StyleId="ordersRoot">
+                                <Grid x:Name="Item" StyleId="ordersRoot">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
@@ -39,19 +39,8 @@
                                         <Label Text="{Binding Price, StringFormat='Цена: {0:C}'}"
                                                FontSize="Micro" LineBreakMode="TailTruncation"/>
                                     </StackLayout>
-                                    <StackLayout Grid.Column="2" Margin="10">
-                                        <Button Image="up_arrow.png" BackgroundColor="Transparent"
-                                             WidthRequest="30" HeightRequest="20" />
-                                        <AbsoluteLayout HorizontalOptions="Center">
-                                        <Label TextColor="Gray"
-                                                    AbsoluteLayout.LayoutBounds=".5, .5, AutoSize, AutoSize"
-                                                    AbsoluteLayout.LayoutFlags="PositionProportional"
-                                                    Text="50"
-                                                    FontSize="12" />
-                                        </AbsoluteLayout>
-                                        <Button Image="arrow_down.png" BackgroundColor="Transparent"
-                                            WidthRequest="30" HeightRequest="20" />
-                                    </StackLayout>
+                                    <Button Text="+" Grid.Column="2" BindingContext="{Binding Source={x:Reference dishList}, Path=BindingContext}"
+                                            Command ="{Binding AddToBasket}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
                                 </Grid>
                             </ViewCell.View>
                         </ViewCell>

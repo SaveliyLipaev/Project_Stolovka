@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using XamarinMobileApp.DAL.DataObjects;
 using XamarinMobileApp.DAL.DataServices;
+using XamarinMobileApp.Helpers;
 
 namespace XamarinMobileApp.BL.ViewModels
 {

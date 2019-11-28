@@ -2,13 +2,55 @@
 <pages:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:XamarinMobileApp.UI.Pages;assembly=XamarinMobileApp"
-             x:Class="XamarinMobileApp.UI.Pages.BasketPage">
+             x:Class="XamarinMobileApp.UI.Pages.BasketPage"
+             Title="{Binding PriceForEverything, StringFormat='Сумма: {0:C}'}">
     <ContentPage.Content>
         <StackLayout >
             <Label Text="Basket Page"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Button Text="OrderPayment" Command="{Binding GoToOrderPaymentCommand}"/>
+            <ListView x:Name="dishList"
+              HasUnevenRows="True"
+              ItemsSource="{Binding BasketList}"
+              RowHeight="100">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid x:Name="Item" StyleId="ordersRoot">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                        <Label Text="{Binding Name}" FontSize="Small"
+                                                   LineBreakMode="TailTruncation" />
+                                        <Label Text="{Binding Price, StringFormat='Цена: {0:C}'}"
+                                               FontSize="Micro" LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="2" Margin="10">
+                                        <Button BindingContext="{Binding Source={x:Reference dishList}, Path=BindingContext}" 
+                                             WidthRequest="30" HeightRequest="20" Image="up_arrow.png" BackgroundColor="Transparent"
+                                             Command ="{Binding Increase}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                                        <AbsoluteLayout HorizontalOptions="Center">
+                                            <Label TextColor="Gray"
+                                                    AbsoluteLayout.LayoutBounds=".5, .5, AutoSize, AutoSize"
+                                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                                    Text="{Binding Count}"
+                                                    FontSize="12" />
+                                        </AbsoluteLayout>
+                                        <Button BindingContext="{Binding Source={x:Reference dishList}, Path=BindingContext}" 
+                                            WidthRequest="30" HeightRequest="20" Image="arrow_down.png" BackgroundColor="Transparent"
+                                            Command ="{Binding Reduce}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Оплатить" Command="{Binding GoToOrderPaymentCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </pages:BasePage>

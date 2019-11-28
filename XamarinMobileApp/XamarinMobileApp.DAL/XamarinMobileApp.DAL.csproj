@@ -43,4 +43,8 @@
     <EmbeddedResource Include="Resources\Mock\MenuInfo.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\XamarinMobileApp.Helpers\XamarinMobileApp.Helpers.csproj" />
+  </ItemGroup>
+
 </Project>

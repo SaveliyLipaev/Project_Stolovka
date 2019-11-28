@@ -1,5 +1,6 @@
 ﻿using Xamarin.Forms;
 using XamarinMobileApp.DAL.DataServices;
+using XamarinMobileApp.Helpers;
 using XamarinMobileApp.UI;
 using XamarinMobileApp.UI.Pages;
 
@@ -13,7 +14,7 @@ namespace XamarinMobileApp
 
             DialogService.Init(this);
             DataServices.Init(true);
-            NavigationService.Init(Pages.Login);
+            NavigationService.Init(Pages.SignIn);
         }
 
         protected override void OnStart()

@@ -2,8 +2,9 @@
 
 namespace XamarinMobileApp.DAL.DataObjects
 {
-    public class LoginResultObject : BaseDataObject
+    public class LoginResultObject
     {
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

@@ -1,4 +1,4 @@
-namespace XamarinMobileApp
+namespace XamarinMobileApp.Helpers
 {
     public static class Consts
     {

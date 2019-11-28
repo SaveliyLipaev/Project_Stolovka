@@ -3,10 +3,11 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using XamarinMobileApp.BL.Services;
 using XamarinMobileApp.DAL.DataObjects;
+using XamarinMobileApp.Helpers;
 
 namespace XamarinMobileApp.BL.ViewModels
 {
-    class LoginViewModel : BaseViewModel
+    class SignInViewModel : BaseViewModel
     {
         public string hintLabel
         {
@@ -14,14 +15,14 @@ namespace XamarinMobileApp.BL.ViewModels
             set => Set(value);
         }
 
-        public ICommand ConnectWithGoogle => MakeCommand((obj) =>
+        public ICommand ConnectWithGoogle => MakeCommand(() =>
         {
-            LoginButtonOnClicked(obj);
+            LoginButtonOnClicked("Google");
         });
 
-        public ICommand ConnectWithVk => MakeCommand((obj) =>
+        public ICommand ConnectWithVk => MakeCommand(() =>
         {
-            LoginButtonOnClicked(obj);
+            LoginButtonOnClicked("vk");
         });
 
         public override Task OnPageAppearing()
@@ -30,16 +31,12 @@ namespace XamarinMobileApp.BL.ViewModels
             return base.OnPageAppearing();
         }
 
-        async void LoginButtonOnClicked(object sender)
+        async void LoginButtonOnClicked(string provider)
         {
-            var senderBtn = sender as Button;
-            if (senderBtn == null)
-            {
-                return;
-            }
 
             ShowLoading("Login. Please wait");
-            var loginResult = await Login(senderBtn.AutomationId);
+
+            var loginResult = await Login(provider);
 
             switch (loginResult.LoginState)
             {

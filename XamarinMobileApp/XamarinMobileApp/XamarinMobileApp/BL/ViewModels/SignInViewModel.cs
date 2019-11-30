@@ -45,6 +45,7 @@ namespace XamarinMobileApp.BL.ViewModels
                     HideLoading();
                     break;
                 case LoginState.Success:
+
                     await NavigateTo(Pages.Canteens, null, mode: NavigationMode.RootPage);
                     break;
                 default:
@@ -54,7 +55,7 @@ namespace XamarinMobileApp.BL.ViewModels
             }
         }
 
-        Task<LoginResultObject> Login(string providerName)
+        Task<LoginResultDataObject> Login(string providerName)
         {
             switch (providerName.ToLower())
             {

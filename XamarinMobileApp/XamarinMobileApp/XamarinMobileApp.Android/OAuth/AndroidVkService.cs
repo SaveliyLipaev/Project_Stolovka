@@ -20,12 +20,12 @@ namespace XamarinMobileApp.Droid
             VKScope.Offline
         };
 
-        TaskCompletionSource<LoginResultObject> _completionSource;
-        LoginResultObject _loginResult;
+        TaskCompletionSource<LoginResultDataObject> _completionSource;
+        LoginResultDataObject _loginResult;
 
-        public Task<LoginResultObject> Login()
+        public Task<LoginResultDataObject> Login()
         {
-            _completionSource = new TaskCompletionSource<LoginResultObject>();
+            _completionSource = new TaskCompletionSource<LoginResultDataObject>();
             VKSdk.Login(Forms.Context as Activity, _permissions);
             return _completionSource.Task;
         }
@@ -39,7 +39,7 @@ namespace XamarinMobileApp.Droid
 
         public void SetUserToken(VKAccessToken token)
         {
-            _loginResult = new LoginResultObject
+            _loginResult = new LoginResultDataObject
             {
                 Email = token.Email,
                 Token = token.AccessToken,
@@ -61,6 +61,7 @@ namespace XamarinMobileApp.Droid
                 _loginResult.FirstName = account.OptString(@"first_name");
                 _loginResult.LastName = account.OptString(@"last_name");
                 _loginResult.LoginState = LoginState.Success;
+                _loginResult.Distributor = "Vk";
                 SetResult(_loginResult);
             }
             else
@@ -71,15 +72,15 @@ namespace XamarinMobileApp.Droid
 
         public void SetErrorResult(string errorMessage)
         {
-            SetResult(new LoginResultObject { LoginState = LoginState.Failed, ErrorString = errorMessage });
+            SetResult(new LoginResultDataObject { LoginState = LoginState.Failed, ErrorString = errorMessage });
         }
 
         public void SetCanceledResult()
         {
-            SetResult(new LoginResultObject { LoginState = LoginState.Canceled });
+            SetResult(new LoginResultDataObject { LoginState = LoginState.Canceled });
         }
 
-        void SetResult(LoginResultObject result)
+        void SetResult(LoginResultDataObject result)
         {
             _completionSource?.TrySetResult(result);
             _loginResult = null;

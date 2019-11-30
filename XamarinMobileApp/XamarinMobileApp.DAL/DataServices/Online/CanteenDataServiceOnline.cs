@@ -9,6 +9,13 @@ namespace XamarinMobileApp.DAL.DataServices.Online
 {
     class CanteenDataServiceOnline : RequestMaker, ICanteenDataService
     {
+        IStolovkaAPI _stolovkaAPI;
+
+        public CanteenDataServiceOnline(IStolovkaAPI stolovkaAPI)
+        {
+            _stolovkaAPI = stolovkaAPI;
+        }
+
         public Task<RequestResult<CanteenSetDataObject>> GetAllCanteen(CancellationToken cts)
         {
             return MakeRequest(ct => _stolovkaAPI.GetAllCanteen(ct), cts);

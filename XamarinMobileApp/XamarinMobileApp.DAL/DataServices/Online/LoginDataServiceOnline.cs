@@ -7,18 +7,18 @@ using XamarinMobileApp.DAL.DataObjects;
 
 namespace XamarinMobileApp.DAL.DataServices.Online
 {
-    class MenuDataServiceOnline : RequestMaker, IMenuDataService
+    class LoginDataServiceOnline : RequestMaker, ILoginDataService
     {
         IStolovkaAPI _stolovkaAPI;
 
-        public MenuDataServiceOnline(IStolovkaAPI stolovkaAPI)
+        public LoginDataServiceOnline(IStolovkaAPI stolovkaAPI)
         {
             _stolovkaAPI = stolovkaAPI;
         }
 
-        public Task<RequestResult<MenuDataObject>> GetMenu(string idCanteen, CancellationToken cts)
+        public Task<RequestResult<string>> LoginInApi(LoginResultDataObject loginResult, CancellationToken cts)
         {
-            return MakeRequest(ct => _stolovkaAPI.GetMenu(idCanteen, ct), cts);
+            return MakeRequest(ct => _stolovkaAPI.LoginInApi(loginResult, ct), cts);
         }
     }
 }

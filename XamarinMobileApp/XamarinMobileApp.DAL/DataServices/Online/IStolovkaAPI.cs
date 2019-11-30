@@ -12,5 +12,8 @@ namespace XamarinMobileApp.DAL.DataServices.Online
 
         [Get("")]
         Task<RequestResult<MenuDataObject>> GetMenu(string idCanteen, CancellationToken cts);
+
+        [Post("")]
+        Task<RequestResult<string>> LoginInApi(LoginResultDataObject loginResult, CancellationToken cts);
     }
 }

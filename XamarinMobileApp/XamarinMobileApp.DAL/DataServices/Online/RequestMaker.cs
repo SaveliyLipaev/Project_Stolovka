@@ -13,17 +13,6 @@ namespace XamarinMobileApp.DAL.DataServices.Online
 {
     class RequestMaker
     {
-        protected IStolovkaAPI _stolovkaAPI;
-
-        protected RequestMaker()
-        {
-            var client = new HttpClient(new NativeMessageHandler())
-            {
-                BaseAddress = new Uri("здесь будет api")
-            };
-            _stolovkaAPI = RestService.For<IStolovkaAPI>(client);
-        }
-
         protected async Task<T> MakeRequest<T>(Func<CancellationToken, Task<T>> loadingFunction, CancellationToken cancellationToken)
         {
             Exception exception = null;

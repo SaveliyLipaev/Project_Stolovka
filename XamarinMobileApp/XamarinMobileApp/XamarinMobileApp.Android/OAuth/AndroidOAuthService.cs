@@ -13,11 +13,11 @@ namespace XamarinMobileApp.Droid
 {
     public class AndroidOAuthService : Java.Lang.Object, IOAuthService
     {
-        TaskCompletionSource<LoginResultObject> _completionSource;
+        TaskCompletionSource<LoginResultDataObject> _completionSource;
 
-        public Task<LoginResultObject> Login()
+        public Task<LoginResultDataObject> Login()
         {
-            _completionSource = new TaskCompletionSource<LoginResultObject>();
+            _completionSource = new TaskCompletionSource<LoginResultDataObject>();
 
             var auth = new OAuth2Authenticator
             (
@@ -48,7 +48,7 @@ namespace XamarinMobileApp.Droid
         {
             if (!authCompletedArgs.IsAuthenticated || authCompletedArgs.Account == null)
             {
-                SetResult(new LoginResultObject { LoginState = LoginState.Canceled });
+                SetResult(new LoginResultDataObject { LoginState = LoginState.Canceled });
             }
             else
             {
@@ -72,7 +72,7 @@ namespace XamarinMobileApp.Droid
             _completionSource = null;
         }
 
-        void SetResult(LoginResultObject result)
+        void SetResult(LoginResultDataObject result)
         {
             _completionSource?.TrySetResult(result);
             _completionSource = null;
@@ -80,7 +80,7 @@ namespace XamarinMobileApp.Droid
 
         async Task GetUserProfile(Account account, string token, DateTimeOffset expireAt)
         {
-            var result = new LoginResultObject
+            var result = new LoginResultDataObject
             {
                 Token = token,
                 ExpireAt = expireAt
@@ -97,7 +97,10 @@ namespace XamarinMobileApp.Droid
                 var jobject = JObject.Parse(userJson);
                 result.LoginState = LoginState.Success;
                 result.Email = jobject["email"]?.ToString();
-                result.FirstName = jobject["name"]?.ToString();
+                result.FirstName = jobject["given_name"]?.ToString();
+                result.LastName = jobject["family_name"]?.ToString();
+                result.Id = jobject["id"]?.ToString();
+                result.Distributor = "Google";
             }
             else
             {

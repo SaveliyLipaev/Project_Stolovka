@@ -2619,6 +2619,7 @@ namespace XamarinMobileApp.Droid
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::XamarinMobileApp.Droid.Resource.Styleable.ProgressWheel_ahText;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::XamarinMobileApp.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::XamarinMobileApp.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
+			global::ModernHttpClient.Resource.String.library_name = global::XamarinMobileApp.Droid.Resource.String.library_name;
 			global::PCLCrypto.Resource.String.ApplicationName = global::XamarinMobileApp.Droid.Resource.String.ApplicationName;
 			global::PCLCrypto.Resource.String.Hello = global::XamarinMobileApp.Droid.Resource.String.Hello;
 			global::Xamarin.Auth.Resource.Animation.slide_in_right = global::XamarinMobileApp.Droid.Resource.Animation.slide_in_right;

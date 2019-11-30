@@ -15,7 +15,8 @@ namespace XamarinMobileApp.DAL.DataServices
             }
             else
             {
-                throw new NotImplementedException("   ");
+                Menu = new Online.MenuDataServiceOnline();
+                Canteens = new Online.CanteenDataServiceOnline();
             }
         }
 

@@ -34,8 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="modernhttpclient" Version="2.4.2" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Refit" Version="4.8.14" />
+    <PackageReference Include="Polly" Version="7.2.0" />
+    <PackageReference Include="Refit" Version="5.0.23" />
   </ItemGroup>
 
   <ItemGroup>

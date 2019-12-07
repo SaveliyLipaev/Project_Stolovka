@@ -166,33 +166,18 @@ namespace XamarinMobileApp.UI
                         }
                         else
                         {
-                            var masterPage = GetInitializedPage(XamarinMobileApp.Helpers.Pages.Menu.ToString());
-                            //Xamarin.Forms return exception when master page title is null
-                            //this title not visible in app
-                            masterPage.Title = nameof(masterPage);
-                            var detailPage = new NavigationPage(newPage);
-                            Xamarin.Forms.Application.Current.MainPage = new MasterDetailPage
-                            {
-                                Master = masterPage,
-                                Detail = detailPage
-                            };
+                            Xamarin.Forms.Application.Current.MainPage = new NavigationPage(newPage);
                         }
                     }
-                    else if (Xamarin.Forms.Application.Current.MainPage is MasterDetailPage mp)
+                    else if (Xamarin.Forms.Application.Current.MainPage is NavigationPage navigationPage)
                     {
-                        mp.IsPresented = false;
-                        await Task.Delay(250);
-                        if (mp.Detail is NavigationPage navigationPage)
+                        var navigation = navigationPage.Navigation;
+                        var navigationStack = navigationPage.Navigation.NavigationStack;
+                        if (navigationStack.Any())
                         {
-                            var navigation = navigationPage.Navigation;
-                            var navigationStack = navigationPage.Navigation.NavigationStack;
-                            if (navigationStack.Any())
-                            {
-                                navigation.InsertPageBefore(newPage, navigationStack.FirstOrDefault());
-                                await navigation.PopToRootAsync();
-                            }
+                            navigation.InsertPageBefore(newPage, navigationStack.FirstOrDefault());
+                            await navigation.PopToRootAsync();
                         }
-
                         pushInfoOnCompletedTask?.SetResult(true);
                     }
                 }

@@ -24,13 +24,18 @@ namespace XamarinMobileApp.BL.ViewModels
                 State = PageState.NoInternet;
                 return;
             }
+            ShowLoading("Загрузка данных по столовкам");
             var result = await DataServices.Canteens.GetAllCanteen(CancellationToken);
             Canteens = result.Data;
+            HideLoading();
         }
 
         public ICommand GoToMenu => MakeCommand((obj) =>
         {
             NavigateTo(Pages.FoodMenu, null, navParams: new Dictionary<string, object> { { "canteen", obj } });
         });
+
+        public ICommand GoToProfile => MakeNavigateToCommand(Pages.Profile);
+
     }
 }

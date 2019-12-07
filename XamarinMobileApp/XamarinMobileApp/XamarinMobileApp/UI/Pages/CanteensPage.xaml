@@ -4,15 +4,19 @@
              xmlns:b="clr-namespace:Pillar;assembly=Pillar"
              xmlns:c="clr-namespace:Pillar;assembly=Pillar"
              xmlns:pages="clr-namespace:XamarinMobileApp.UI.Pages;assembly=XamarinMobileApp"
-             x:Class="XamarinMobileApp.UI.Pages.CanteensPage">
+             x:Class="XamarinMobileApp.UI.Pages.CanteensPage"
+             Title="Stolovka">
     <ContentPage.Resources>
         <ResourceDictionary>
             <c:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="baseline_account_circle_black_36.png" Text="Profile" Command="{Binding GoToProfile}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar x:Name="CanteenSearchBar"/>
+            <SearchBar x:Name="CanteenSearchBar" Placeholder="Search"/>
             <ListView x:Name="canteenList"
               HasUnevenRows="True"
               ItemsSource="{Binding Canteens.Canteens}"

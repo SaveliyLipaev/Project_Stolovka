@@ -27,7 +27,7 @@ namespace XamarinMobileApp.BL.ViewModels
 
         public override Task OnPageAppearing()
         {
-            hintLabel = "Unauthenticated";
+            hintLabel = "Log in please";
             return base.OnPageAppearing();
         }
 

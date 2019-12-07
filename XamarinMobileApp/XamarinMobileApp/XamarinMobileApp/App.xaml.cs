@@ -13,7 +13,7 @@ namespace XamarinMobileApp
             InitializeComponent();
 
             DialogService.Init(this);
-            DataServices.Init(false);
+            DataServices.Init(true);
             NavigationService.Init(Pages.SignIn);
         }
 

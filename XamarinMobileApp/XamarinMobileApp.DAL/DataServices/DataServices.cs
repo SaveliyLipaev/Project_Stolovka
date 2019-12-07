@@ -2,8 +2,6 @@ using ModernHttpClient;
 using Refit;
 using System;
 using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
 using XamarinMobileApp.DAL.DataServices.Online;
 
 namespace XamarinMobileApp.DAL.DataServices
@@ -20,11 +18,12 @@ namespace XamarinMobileApp.DAL.DataServices
                 Canteens = new Mock.CanteenDataService();
             }
             else
-            { 
+            {
                 var client = new HttpClient(new NativeMessageHandler())
                 {
-                    BaseAddress = new Uri("здесь будет api")
+                    BaseAddress = new Uri("109.94.208.43:80")
                 };
+
                 _stolovkaAPI = RestService.For<IStolovkaAPI>(client);
 
                 Menu = new Online.MenuDataServiceOnline(_stolovkaAPI);

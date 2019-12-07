@@ -21,7 +21,7 @@ namespace XamarinMobileApp.DAL.DataServices
             {
                 var client = new HttpClient(new NativeMessageHandler())
                 {
-                    BaseAddress = new Uri("109.94.208.43:80")
+                    BaseAddress = new Uri("https://109.94.208.43:5000")
                 };
 
                 _stolovkaAPI = RestService.For<IStolovkaAPI>(client);

@@ -23,6 +23,7 @@ namespace XamarinMobileApp.DAL.DataServices.Online
                 result = await Policy.Handle<WebException>().Or<HttpRequestException>()
                     .WaitAndRetryAsync(3, i => TimeSpan.FromMilliseconds(300), (ex, span) => exception = ex)
                     .ExecuteAsync(loadingFunction, cancellationToken);
+                var e = result;
             }
             catch (Exception e)
             {

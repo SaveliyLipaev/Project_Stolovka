@@ -7,7 +7,7 @@ namespace XamarinMobileApp.DAL.DataServices.Online
 {
     public interface IStolovkaAPI
     {
-        [Get("")]
+        [Get("/canteenlist/get")]
         Task<RequestResult<CanteenSetDataObject>> GetAllCanteen(CancellationToken cts);
 
         [Get("")]

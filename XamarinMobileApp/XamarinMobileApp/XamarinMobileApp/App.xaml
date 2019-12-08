@@ -7,6 +7,8 @@
              mc:Ignorable="d"
              x:Class="XamarinMobileApp.App">
     <Application.Resources>
+        <OnPlatform x:TypeArguments="Color" Android="#F5F5F5" iOS="#EFEFF4" WinPhone="#EFEFF4"
+                        x:Key="WindowBackgroundTable" />
 
         <Color x:Key="asphaltPrimary">#365271</Color>
         <Color x:Key="asphaltDark">#1C2B39</Color>
@@ -14,17 +16,20 @@
         <Color x:Key="grayDark">#76828A</Color>
         <Color x:Key="grayPrimary">#ADB7BE</Color>
 
+        <Color x:Key="mainOrange">#ff7e05</Color>
+        <Color x:Key="lightOrange">#ff9430</Color>
+
         <Color x:Key="badgeColor">#4caf50</Color>
 
         <Style x:Key="labelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="Black" />
-            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="TextColor" Value="{StaticResource asphaltDark}" />
+            <Setter Property="FontSize" Value="Medium"/>
         </Style>
         
         <Style x:Key="header" TargetType="Label" BasedOn="{StaticResource labelStyle}">
             <Setter Property="FontFamily" Value="SegoeUI" />
-            <Setter Property="TextColor" Value="{StaticResource asphaltPrimary}" />
-            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="28"/>
             <Setter Property="HorizontalTextAlignment" Value="Center"/>
         </Style>
 

@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace XamarinMobileApp.UI.Controls
 {
-    class AnimateButton : Button
+    public class AnimateButton : Button
     {
         public AnimateButton()
         {

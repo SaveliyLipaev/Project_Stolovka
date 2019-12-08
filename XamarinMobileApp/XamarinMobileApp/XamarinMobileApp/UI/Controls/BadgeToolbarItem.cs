@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace XamarinMobileApp.UI.Controls
 {
-    class BadgeToolbarItem : ToolbarItem
+    public class BadgeToolbarItem : ToolbarItem
     {
         private const string DefaultBadgeText = default(string);
         private static readonly Color DefaultBadgeColor = Color.Red;

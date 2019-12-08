@@ -13,7 +13,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <controls:BadgeToolbarItem Icon="baseline_account_circle_black_36.png" 
+        <controls:BadgeToolbarItem Icon="profile" 
                                    Text="Profile" 
                                    BadgeColor="{StaticResource badgeColor}"
                                    BadgePressedColor="{StaticResource badgeColor}"

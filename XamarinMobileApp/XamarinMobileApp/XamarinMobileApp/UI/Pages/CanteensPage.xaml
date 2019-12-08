@@ -21,10 +21,9 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar x:Name="CanteenSearchBar" BackgroundColor="{StaticResource lightOrange}" TextColor="White" PlaceholderColor="White" Placeholder="Search"/>
+            <SearchBar x:Name="CanteenSearchBar" BackgroundColor="{StaticResource lightLightOrange}" TextColor="White" PlaceholderColor="White" Placeholder="Search"/>
             <ListView x:Name="canteenList"
               HasUnevenRows="True"
-              SeparatorVisibility="None"
               ItemsSource="{Binding Canteens.Canteens}">
                 <ListView.Behaviors>
                     <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding GoToMenu}" EventArgsConverter="{StaticResource ItemTappedConverter}" />
@@ -33,7 +32,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <Grid Margin="0,0,0,20" Padding="4,0,4,0">
+                                <Grid Margin="0,10,0,10" Padding="4,0,4,0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>

@@ -18,7 +18,8 @@
 
         <Color x:Key="mainOrange">#ff7e05</Color>
         <Color x:Key="lightOrange">#ff9430</Color>
-
+        <Color x:Key="lightLightOrange">#fca14c</Color>
+        
         <Color x:Key="badgeColor">#4caf50</Color>
 
         <Style x:Key="labelStyle" TargetType="Label">

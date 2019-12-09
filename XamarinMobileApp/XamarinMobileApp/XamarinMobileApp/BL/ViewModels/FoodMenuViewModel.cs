@@ -57,7 +57,8 @@ namespace XamarinMobileApp.BL.ViewModels
 
         public ICommand GoToBasket => MakeCommand(() =>
         {
-            NavigateTo(Pages.Basket, Pages.FoodMenu, navParams: new Dictionary<string, object> { { "dishs", listDish }, { "price", PriceForEverything.ToString() } });
+            NavigateTo(Pages.Basket, Pages.FoodMenu, 
+                navParams: new Dictionary<string, object> { { "dishs", listDish }, { "price", PriceForEverything.ToString() } });
         });
 
         private void AddInDishList(DishDataObject dish)

@@ -6,7 +6,7 @@
              xmlns:c="clr-namespace:Pillar;assembly=Pillar"
              xmlns:pages="clr-namespace:XamarinMobileApp.UI.Pages;assembly=XamarinMobileApp"
              x:Class="XamarinMobileApp.UI.Pages.FoodMenuPage"
-             Title="{Binding Canteen.Name}">
+             Title="Mеню">
     <ContentPage.Resources>
         <ResourceDictionary>
             <c:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />

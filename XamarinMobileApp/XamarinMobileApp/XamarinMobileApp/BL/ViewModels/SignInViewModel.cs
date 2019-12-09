@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using Akavache;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Reactive.Linq;
 using Xamarin.Forms;
 using XamarinMobileApp.BL.Services;
 using XamarinMobileApp.DAL.DataObjects;
@@ -27,6 +30,7 @@ namespace XamarinMobileApp.BL.ViewModels
 
         public override Task OnPageAppearing()
         {
+            Akavache.Registrations.Start("XamarinMobileApp");
             hintLabel = "Log in please";
             return base.OnPageAppearing();
         }
@@ -44,10 +48,12 @@ namespace XamarinMobileApp.BL.ViewModels
                     hintLabel = "Canceled";
                     HideLoading();
                     break;
-                case LoginState.Success:
 
+                case LoginState.Success:
+                    await BlobCache.UserAccount.InsertObject("login", loginResult);
                     await NavigateTo(Pages.Canteens, null, mode: NavigationMode.RootPage);
                     break;
+
                 default:
                     hintLabel = "Failed: " + loginResult.ErrorString;
                     HideLoading();

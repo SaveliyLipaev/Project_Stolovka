@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.0.35" />
+    <PackageReference Include="akavache" Version="6.9.10" />
     <PackageReference Include="Askaiser.Mobile.Pillar" Version="1.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />

@@ -1,8 +1,13 @@
-﻿using Xamarin.Forms;
+﻿using Akavache;
+using System;
+using System.Collections.Generic;
+using Xamarin.Forms;
 using XamarinMobileApp.DAL.DataServices;
 using XamarinMobileApp.Helpers;
 using XamarinMobileApp.UI;
 using XamarinMobileApp.UI.Pages;
+using System.Reactive.Linq;
+using XamarinMobileApp.DAL.DataObjects;
 
 namespace XamarinMobileApp
 {
@@ -13,13 +18,17 @@ namespace XamarinMobileApp
             InitializeComponent();
 
             DialogService.Init(this);
+
             DataServices.Init(true);
+
+            Akavache.Registrations.Start("XamarinMobileApp");
+
             NavigationService.Init(Pages.SignIn);
         }
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+
         }
 
         protected override void OnSleep()

@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using XamarinMobileApp.BL.Services;
 using XamarinMobileApp.DAL.DataObjects;
 using XamarinMobileApp.Helpers;
+using System;
 
 namespace XamarinMobileApp.BL.ViewModels
 {
@@ -28,11 +29,23 @@ namespace XamarinMobileApp.BL.ViewModels
             LoginButtonOnClicked("vk");
         });
 
-        public override Task OnPageAppearing()
+        public override  Task OnPageAppearing()
         {
-            Akavache.Registrations.Start("XamarinMobileApp");
             hintLabel = "Log in please";
             return base.OnPageAppearing();
+        }
+
+        protected override async Task LoadDataAsync()
+        {
+            try
+            {
+                await BlobCache.UserAccount.GetObject<LoginResultDataObject>("login");
+                await NavigateTo(Pages.Canteens, null, NavigationMode.RootPage);
+            }
+            catch (KeyNotFoundException ex)
+            {
+
+            }
         }
 
         async void LoginButtonOnClicked(string provider)

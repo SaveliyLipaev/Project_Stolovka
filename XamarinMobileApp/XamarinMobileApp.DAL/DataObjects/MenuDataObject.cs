@@ -7,6 +7,6 @@ namespace XamarinMobileApp.DAL.DataObjects
     public class MenuDataObject
     {
         public string CanteenId { get; set; }
-        public List<DishDataObject> Menu { get; set; }
+        public List<DishDataObject> Dishes { get; set; }
     }
 }

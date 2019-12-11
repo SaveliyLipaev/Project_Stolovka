@@ -30,10 +30,9 @@ namespace XamarinMobileApp.DAL.DataServices.Online
             }
             catch (Exception e)
             {
-                // Сюда приходят ошибки вроде отсутствия интернет-соединения или неправильной работы DNS
-                exception = e;
+                requestResult = new RequestResult<T>(null, RequestStatus.BadRequest, e.Message);
             }
-            //TODO: Обработать исключения или передать их дальше            
+            
             return requestResult;
         }
     }

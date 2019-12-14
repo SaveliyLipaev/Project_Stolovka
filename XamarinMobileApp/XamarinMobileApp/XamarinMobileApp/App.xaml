@@ -1,11 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XamarinMobileApp.UI.Controls"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="XamarinMobileApp.App">
     <Application.Resources>
+        <OnPlatform x:TypeArguments="Color" Android="#F5F5F5" iOS="#EFEFF4" WinPhone="#EFEFF4"
+                        x:Key="WindowBackgroundTable" />
+
+        <Color x:Key="asphaltPrimary">#365271</Color>
+        <Color x:Key="asphaltDark">#1C2B39</Color>
+        
+        <Color x:Key="grayDark">#76828A</Color>
+        <Color x:Key="grayPrimary">#ADB7BE</Color>
+
+        <Color x:Key="mainOrange">#ff7e05</Color>
+        <Color x:Key="lightOrange">#ff9430</Color>
+        <Color x:Key="lightLightOrange">#fca14c</Color>
+        
+        <Color x:Key="badgeColor">#4caf50</Color>
+
+        <Style x:Key="labelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource asphaltDark}" />
+            <Setter Property="FontSize" Value="Medium"/>
+        </Style>
+        
+        <Style x:Key="header" TargetType="Label" BasedOn="{StaticResource labelStyle}">
+            <Setter Property="FontFamily" Value="SegoeUI" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="buttonStyle" TargetType="Button">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BorderRadius" Value="4" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="BackgroundColor" Value="{StaticResource grayPrimary}" />
+            <Style.Triggers>
+                <Trigger TargetType="Button" Property="IsEnabled" Value="False">
+                    <Setter Property="TextColor" Value="#BBDEFB" />
+                    <Setter Property="BackgroundColor" Value="#B6B6B6" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style TargetType="controls:AnimateButton" BasedOn="{StaticResource buttonStyle}" />
         
     </Application.Resources>
 </Application>

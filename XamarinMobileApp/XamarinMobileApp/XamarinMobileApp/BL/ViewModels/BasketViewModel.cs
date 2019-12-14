@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Input;
 using XamarinMobileApp.DAL.DataObjects;
+using XamarinMobileApp.Helpers;
 
 namespace XamarinMobileApp.BL.ViewModels
 {
@@ -42,5 +43,12 @@ namespace XamarinMobileApp.BL.ViewModels
                 PriceForEverything -= dish.Price;
             }
         });
+
+        public ICommand GoToOrderPaymentCommand => MakeCommand(() =>
+        {
+            NavigateTo(Pages.OrderPayment, null, 
+                navParams: new Dictionary<string, object> { { "dishs", BasketList }, { "price", PriceForEverything.ToString() } });
+        });
+
     }
 }

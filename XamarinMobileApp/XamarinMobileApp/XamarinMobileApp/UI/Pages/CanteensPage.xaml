@@ -3,24 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:b="clr-namespace:Pillar;assembly=Pillar"
              xmlns:c="clr-namespace:Pillar;assembly=Pillar"
+             xmlns:controls="clr-namespace:XamarinMobileApp.UI.Controls"
              xmlns:pages="clr-namespace:XamarinMobileApp.UI.Pages;assembly=XamarinMobileApp"
              x:Class="XamarinMobileApp.UI.Pages.CanteensPage"
-             Title="Stolovka">
+             Title="Stolovki">
     <ContentPage.Resources>
         <ResourceDictionary>
             <c:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="baseline_account_circle_black_36.png" Text="Profile" Command="{Binding GoToProfile}"/>
+        <controls:BadgeToolbarItem Icon="profile" 
+                                   Text="Настройки" 
+                                   BadgeColor="{StaticResource badgeColor}"
+                                   BadgePressedColor="{StaticResource badgeColor}"
+                                   Command="{Binding GoToProfile}" Priority="0" Order="Secondary"/>
+        <controls:BadgeToolbarItem Text="Выход" Priority="1" Order="Secondary"
+                                   Command="{Binding ExitAccount}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar x:Name="CanteenSearchBar" Placeholder="Search"/>
+            <SearchBar x:Name="CanteenSearchBar" BackgroundColor="{StaticResource lightLightOrange}" TextColor="White" PlaceholderColor="White" Placeholder="Search"/>
             <ListView x:Name="canteenList"
               HasUnevenRows="True"
-              ItemsSource="{Binding Canteens.Canteens}"
-              RowHeight="100">
+              ItemsSource="{Binding Canteens.Canteens}">
                 <ListView.Behaviors>
                     <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding GoToMenu}" EventArgsConverter="{StaticResource ItemTappedConverter}" />
                 </ListView.Behaviors>
@@ -28,11 +34,25 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout>
-                                    <Label Text="{Binding Name}" FontSize="18" />
-                                    <Label Text="{Binding Address}" />
-                                    <Label Text="{Binding WorkTime}" />
-                                </StackLayout>
+                                <Grid Margin="0,10,0,10" Padding="4,0,4,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="0.55*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand">
+                                        <Label Text="{Binding Name}" 
+                                           FontSize="Large" TextColor="{StaticResource asphaltDark}" />
+                                        <Label Text="{Binding Address}"
+                                           FontSize="Medium" TextColor="{StaticResource asphaltDark}" />
+                                    </StackLayout>
+                                    <Label Grid.Column="2" Text="{Binding WorkTime}"
+                                           FontSize="Micro" TextColor="{StaticResource asphaltDark}"
+                                           VerticalOptions="CenterAndExpand"/>
+                                </Grid>
                             </ViewCell.View>
                         </ViewCell>
                     </DataTemplate>

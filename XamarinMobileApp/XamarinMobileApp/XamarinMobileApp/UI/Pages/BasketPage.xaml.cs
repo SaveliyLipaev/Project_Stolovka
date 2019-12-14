@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms.Xaml;
+﻿using System;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace XamarinMobileApp.UI.Pages
 {
@@ -8,6 +10,12 @@ namespace XamarinMobileApp.UI.Pages
         public BasketPage()
         {
             InitializeComponent();
+            dishList.ItemSelected += DeselectItem;
+        }
+
+        public void DeselectItem(object sender, EventArgs e)
+        {
+            ((ListView)sender).SelectedItem = null;
         }
     }
 }

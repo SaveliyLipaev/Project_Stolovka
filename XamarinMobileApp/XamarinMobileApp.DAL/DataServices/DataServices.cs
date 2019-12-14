@@ -1,4 +1,6 @@
 using ModernHttpClient;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Refit;
 using System;
 using System.Net.Http;
@@ -21,10 +23,11 @@ namespace XamarinMobileApp.DAL.DataServices
             {
                 var client = new HttpClient(new NativeMessageHandler())
                 {
-                    BaseAddress = new Uri("https://109.94.208.43:5000")
+                    BaseAddress = new Uri("http://109.94.208.43:5000/")
                 };
 
                 _stolovkaAPI = RestService.For<IStolovkaAPI>(client);
+
 
                 Menu = new Online.MenuDataServiceOnline(_stolovkaAPI);
                 Canteens = new Online.CanteenDataServiceOnline(_stolovkaAPI);

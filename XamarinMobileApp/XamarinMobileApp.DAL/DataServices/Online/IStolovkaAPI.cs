@@ -8,12 +8,13 @@ namespace XamarinMobileApp.DAL.DataServices.Online
     public interface IStolovkaAPI
     {
         [Get("/canteenlist/get")]
-        Task<RequestResult<CanteenSetDataObject>> GetAllCanteen(CancellationToken cts);
+        Task<CanteenSetDataObject> GetAllCanteen(CancellationToken cts);
 
         [Get("")]
-        Task<RequestResult<MenuDataObject>> GetMenu(string idCanteen, CancellationToken cts);
+        Task<MenuDataObject> GetMenu(string idCanteen, CancellationToken cts);
 
         [Post("")]
-        Task<RequestResult<string>> LoginInApi(LoginResultDataObject loginResult, CancellationToken cts);
+        Task<string> LoginInApi(LoginResultDataObject loginResult, CancellationToken cts);
     }
 }
+    

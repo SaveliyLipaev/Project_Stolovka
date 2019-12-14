@@ -13,25 +13,27 @@ namespace XamarinMobileApp.DAL.DataServices.Online
 {
     class RequestMaker
     {
-        protected async Task<T> MakeRequest<T>(Func<CancellationToken, Task<T>> loadingFunction, CancellationToken cancellationToken)
+        protected async Task<RequestResult<T>> MakeRequest<T>(Func<CancellationToken, Task<T>> loadingFunction, CancellationToken cancellationToken)
+            where T : class
         {
             Exception exception = null;
             var result = default(T);
+            RequestResult<T> requestResult = default;
 
             try
             {
-                result = await Policy.Handle<WebException>().Or<HttpRequestException>()
+                result = Policy.Handle<WebException>().Or<HttpRequestException>()
                     .WaitAndRetryAsync(3, i => TimeSpan.FromMilliseconds(300), (ex, span) => exception = ex)
-                    .ExecuteAsync(loadingFunction, cancellationToken);
-                var e = result;
+                    .ExecuteAsync(loadingFunction, cancellationToken).GetAwaiter().GetResult();
+
+                requestResult = new RequestResult<T>(result, RequestStatus.Ok);
             }
             catch (Exception e)
             {
-                // Сюда приходят ошибки вроде отсутствия интернет-соединения или неправильной работы DNS
-                exception = e;
+                requestResult = new RequestResult<T>(null, RequestStatus.BadRequest, e.Message);
             }
-            //TODO: Обработать исключения или передать их дальше            
-            return result;
+            
+            return requestResult;
         }
     }
 }

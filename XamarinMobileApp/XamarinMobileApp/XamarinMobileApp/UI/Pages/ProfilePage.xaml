@@ -5,9 +5,9 @@
              x:Class="XamarinMobileApp.UI.Pages.ProfilePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="ProfilePage!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding Name}"/>
+            <Label Text="{Binding Family}"/>
+            <Label Text="{Binding Email}"/>
             <Button Text="ProfileEdit" Command="{Binding GoToProfileEditCommand}"/>
         </StackLayout>
     </ContentPage.Content>

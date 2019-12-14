@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:XamarinMobileApp.UI.Controls"
              xmlns:pages="clr-namespace:XamarinMobileApp.UI.Pages;assembly=XamarinMobileApp"
              x:Class="XamarinMobileApp.UI.Pages.BasketPage"
-             Title="{Binding PriceForEverything, StringFormat='Сумма: {0:C}'}">
+             Title="Корзина">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{Binding PriceForEverything, StringFormat='Сумма: {0} Р.'}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout >
-            <Label Text="Basket Page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
             <ListView x:Name="dishList"
               HasUnevenRows="True"
               ItemsSource="{Binding BasketList}"
@@ -17,20 +18,20 @@
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <Grid x:Name="Item" StyleId="ordersRoot">
+                                <Grid x:Name="Item" Margin="0,8,0,8" Padding="4,0,4,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <StackLayout Grid.Column="1" VerticalOptions="Center">
-                                        <Label Text="{Binding Name}" FontSize="Small"
+                                        <Label Text="{Binding Name}" Style="{StaticResource labelStyle}"
                                                    LineBreakMode="TailTruncation" />
-                                        <Label Text="{Binding Price, StringFormat='Цена: {0:C}'}"
-                                               FontSize="Micro" LineBreakMode="TailTruncation"/>
+                                        <Label Text="{Binding Price, StringFormat='Цена: {0} Р.'}" Style="{StaticResource labelStyle}"
+                                               FontSize="Small" LineBreakMode="TailTruncation"/>
                                     </StackLayout>
                                     <StackLayout Grid.Column="2" Margin="10">
-                                        <Button BindingContext="{Binding Source={x:Reference dishList}, Path=BindingContext}" 
+                                        <controls:AnimateButton BindingContext="{Binding Source={x:Reference dishList}, Path=BindingContext}" 
                                              WidthRequest="30" HeightRequest="20" Image="up_arrow.png" BackgroundColor="Transparent"
                                              Command ="{Binding Increase}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
                                         <AbsoluteLayout HorizontalOptions="Center">
@@ -40,7 +41,7 @@
                                                     Text="{Binding Count}"
                                                     FontSize="12" />
                                         </AbsoluteLayout>
-                                        <Button BindingContext="{Binding Source={x:Reference dishList}, Path=BindingContext}" 
+                                        <controls:AnimateButton BindingContext="{Binding Source={x:Reference dishList}, Path=BindingContext}" 
                                             WidthRequest="30" HeightRequest="20" Image="arrow_down.png" BackgroundColor="Transparent"
                                             Command ="{Binding Reduce}" CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
                                     </StackLayout>
@@ -50,7 +51,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Оплатить" Command="{Binding GoToOrderPaymentCommand}"/>
+            <controls:AnimateButton Text="Оплатить" BackgroundColor="{StaticResource lightOrange}"
+                                    Command="{Binding GoToOrderPaymentCommand}" Margin="5"/>
         </StackLayout>
     </ContentPage.Content>
 </pages:BasePage>

@@ -6,11 +6,16 @@ using StolovkaWebAPI.Services;
 
 namespace StolovkaWebAPI.Installers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class CacheInstaller : IInstaller
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
             var redisCacheSettings = new RedisCacheSettings();
+
+            // Define the context for setup of a specific service using reflection.
             configuration.GetSection(nameof(RedisCacheSettings)).Bind(redisCacheSettings);
             services.AddSingleton(redisCacheSettings);
 

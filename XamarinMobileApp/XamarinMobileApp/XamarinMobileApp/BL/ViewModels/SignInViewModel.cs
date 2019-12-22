@@ -42,10 +42,8 @@ namespace XamarinMobileApp.BL.ViewModels
                 await BlobCache.UserAccount.GetObject<LoginResultDataObject>("login");
                 await NavigateTo(Pages.Canteens, null, NavigationMode.RootPage);
             }
-            catch (KeyNotFoundException ex)
-            {
-
-            }
+            catch (KeyNotFoundException)
+            { }
         }
 
         async void LoginButtonOnClicked(string provider)

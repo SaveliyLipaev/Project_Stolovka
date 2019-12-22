@@ -22,6 +22,7 @@ namespace XamarinMobileApp.DAL.DataServices
             {
                 Menu = new Mock.MenuDataService();
                 Canteens = new Mock.CanteenDataService();
+                User = new Mock.UserDataService();
             }
             else
             {
@@ -38,6 +39,8 @@ namespace XamarinMobileApp.DAL.DataServices
 
                 Menu = new Online.MenuDataServiceOnline(_stolovkaAPI);
                 Canteens = new Online.CanteenDataServiceOnline(_stolovkaAPI);
+                User = new Online.UserDataServiceOnline(_stolovkaAPI);
+                Order = new Online.OrderDataServiceOnline(_stolovkaAPI);
                 Login = new Online.LoginDataServiceOnline(_identityAPI);
             }
         }
@@ -45,5 +48,8 @@ namespace XamarinMobileApp.DAL.DataServices
         public static IMenuDataService Menu { get; private set; }
         public static ICanteenDataService Canteens { get; private set; }
         public static ILoginDataService Login { get; private set; }
+        public static IUserDataService User { get; private set; }
+        public static IOrderDataService Order { get; private set; }
+
     }
 }

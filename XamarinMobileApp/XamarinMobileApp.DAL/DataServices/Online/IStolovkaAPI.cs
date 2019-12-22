@@ -18,7 +18,13 @@ namespace XamarinMobileApp.DAL.DataServices.Online
         Task<string> SendOrder([Body]RequestOrderDataObject order, CancellationToken cts);
 
         [Get("/api/v1/orders/{orderId}")]
-        Task<ResponseOrderDataObject> GetOrderById(string orderId, CancellationToken cts); 
+        Task<ResponseOrderDataObject> GetOrderById(string orderId, CancellationToken cts);
+
+        [Get("/api/v1/users/{userId}")]
+        Task<UserInfoDataObject> GetUserInfo(string userId, CancellationToken cts);
+
+        [Put("/api/v1/users/{userId}")]
+        Task<UserInfoDataObject> PutUserInfo(string userId, [Body]UserInfoDataObject userInfo, CancellationToken cts);
     }
 }
     

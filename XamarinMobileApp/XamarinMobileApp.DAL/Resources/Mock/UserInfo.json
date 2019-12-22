@@ -1,0 +1,22 @@
+{
+  "UserId": "1",
+  "Name": "Tim",
+  "Cards": [
+    {
+      "CardId": "1",
+      "CardNumber": "1234123412341234",
+      "CardholderFirstName": "Tim",
+      "CardholderLastName": "Last",
+      "ExparathionYear": 1200,
+      "ExparathionMounth": 12
+    },
+    {
+      "CardId": "2",
+      "CardNumber": "987698769876",
+      "CardholderFirstName": "Gin",
+      "CardholderLastName": "Break",
+      "ExparathionYear": 1200,
+      "ExparathionMounth": 12
+    }
+  ]
+}

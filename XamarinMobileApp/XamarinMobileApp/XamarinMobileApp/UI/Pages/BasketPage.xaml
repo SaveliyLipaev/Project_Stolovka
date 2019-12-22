@@ -51,6 +51,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Label Text="Выберите карту" Style="{StaticResource labelStyle}"
+                    HorizontalOptions="CenterAndExpand"/>
+            <Picker ItemsSource="{Binding Cards}" ItemDisplayBinding="{Binding CardNumber}" SelectedItem="{Binding SelectedCard}"/>
+
             <controls:AnimateButton Text="Оплатить" BackgroundColor="{StaticResource lightOrange}"
                                     Command="{Binding GoToOrderPaymentCommand}" Margin="5"/>
         </StackLayout>

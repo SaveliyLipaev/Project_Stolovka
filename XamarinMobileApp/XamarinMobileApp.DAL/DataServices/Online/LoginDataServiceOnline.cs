@@ -9,16 +9,16 @@ namespace XamarinMobileApp.DAL.DataServices.Online
 {
     class LoginDataServiceOnline : RequestMaker, ILoginDataService
     {
-        IStolovkaAPI _stolovkaAPI;
+        IIdentityAPI _identityAPI;
 
-        public LoginDataServiceOnline(IStolovkaAPI stolovkaAPI)
+        public LoginDataServiceOnline(IIdentityAPI identityAPI)
         {
-            _stolovkaAPI = stolovkaAPI;
+            _identityAPI = identityAPI;
         }
 
-        public Task<RequestResult<string>> LoginInApi(LoginResultDataObject loginResult, CancellationToken cts)
+        public Task<RequestResult<AuthSuccessResponse>> LoginInApi(LoginResultDataObject loginResult, CancellationToken cts)
         {
-            return MakeRequest(ct => _stolovkaAPI.LoginInApi(loginResult, ct), cts);
+            return MakeRequest(ct => _identityAPI.LoginAsync(loginResult, ct), cts);
         }
     }
 }

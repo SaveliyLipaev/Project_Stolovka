@@ -50,7 +50,6 @@ namespace XamarinMobileApp.BL.ViewModels
 
         async void LoginButtonOnClicked(string provider)
         {
-
             ShowLoading("Login. Please wait");
 
             var loginResult = await Login(provider);

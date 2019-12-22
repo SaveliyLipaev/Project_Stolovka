@@ -21,7 +21,7 @@
                          Margin="0, 15, 0, 0">
             <ListView x:Name="dishList"
               HasUnevenRows="True"
-              ItemsSource="{Binding Menu.Menu}"
+              ItemsSource="{Binding Menu.Dishes}"
               RowHeight="100">
                 <ListView.ItemTemplate>
                     <DataTemplate>

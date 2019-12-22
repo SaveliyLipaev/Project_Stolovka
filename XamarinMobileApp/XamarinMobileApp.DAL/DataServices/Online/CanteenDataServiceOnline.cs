@@ -18,7 +18,7 @@ namespace XamarinMobileApp.DAL.DataServices.Online
 
         public Task<RequestResult<CanteenSetDataObject>> GetAllCanteen(CancellationToken cts)
         {
-            return MakeRequest(ct => _stolovkaAPI.GetAllCanteen(ct), cts);
+            return MakeRequest(ct => _stolovkaAPI.GetAllCanteens(ct), cts);
         }
     }
 }

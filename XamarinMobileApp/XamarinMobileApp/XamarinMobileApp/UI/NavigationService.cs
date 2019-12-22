@@ -20,6 +20,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
+using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -192,7 +194,7 @@ namespace XamarinMobileApp.UI
 
         private void CustomPush(Page newPage, TaskCompletionSource<bool> pushInfoOnCompletedTask)
         {
-            // TODO: Implement your own navigation stack manipulation using popInfo
+            Device.BeginInvokeOnMainThread(async() => await PopupNavigation.Instance.PushAsync(newPage as PopupPage));
         }
 
         private void Pop(NavigationPopInfo popInfo)
@@ -231,7 +233,7 @@ namespace XamarinMobileApp.UI
 
         private void CustomPop(TaskCompletionSource<bool> completed)
         {
-            // TODO: Implement your own navigation stack manipulation using popInfo
+            Device.BeginInvokeOnMainThread(async () => await PopupNavigation.Instance.PopAsync());
         }
 
         private void NormalPop(TaskCompletionSource<bool> completed)
@@ -271,6 +273,7 @@ namespace XamarinMobileApp.UI
 
         private BasePage GetInitializedPage(string toName, Dictionary<string, object> navParams = null)
         {
+
             var page = GetPage(toName);
             var viewModel = GetViewModel(toName);
             viewModel.SetNavigationParams(navParams);

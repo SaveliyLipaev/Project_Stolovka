@@ -9,6 +9,6 @@ namespace XamarinMobileApp.DAL.DataServices
 {
     public interface ILoginDataService
     {
-        Task<RequestResult<string>> LoginInApi(LoginResultDataObject loginResult, CancellationToken cts);
+        Task<RequestResult<AuthSuccessResponse>> LoginInApi(LoginResultDataObject loginResult, CancellationToken cts);
     }
 }

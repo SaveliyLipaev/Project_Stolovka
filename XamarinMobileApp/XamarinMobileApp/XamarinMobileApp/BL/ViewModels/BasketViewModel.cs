@@ -46,7 +46,7 @@ namespace XamarinMobileApp.BL.ViewModels
 
         public ICommand GoToOrderPaymentCommand => MakeCommand(() =>
         {
-            NavigateTo(Pages.OrderPayment, null, 
+            NavigateTo(Pages.OrderPayment, null, NavigationMode.Custom, 
                 navParams: new Dictionary<string, object> { { "dishs", BasketList }, { "price", PriceForEverything.ToString() } });
         });
 

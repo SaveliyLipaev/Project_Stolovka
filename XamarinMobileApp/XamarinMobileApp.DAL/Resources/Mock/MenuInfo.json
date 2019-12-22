@@ -1,6 +1,6 @@
 ﻿{
   "CanteenId" : 1, 
-  "Menu": [
+  "Dishes": [
     {
       "Id": 1,
       "Name": "Картошечка",

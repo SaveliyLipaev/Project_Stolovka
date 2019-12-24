@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using StolovkaWebAPI.Data;
+using System.Threading.Tasks;
 
 namespace StolovkaWebAPI
 {
@@ -27,7 +27,7 @@ namespace StolovkaWebAPI
                     var adminRole = new IdentityRole("Admin");
                     await roleManager.CreateAsync(adminRole);
                 }
-                
+
                 if (!await roleManager.RoleExistsAsync("Poster"))
                 {
                     var posterRole = new IdentityRole("Poster");

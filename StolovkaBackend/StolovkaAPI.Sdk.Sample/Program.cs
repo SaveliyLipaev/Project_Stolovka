@@ -1,8 +1,6 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Refit;
+﻿using Refit;
 using StolovkaWebAPI.Contracts.V1.Requests;
+using System.Threading.Tasks;
 
 namespace StolovkaWebAPI.Sdk.Sample
 {
@@ -11,7 +9,7 @@ namespace StolovkaWebAPI.Sdk.Sample
         static async Task Main(string[] args)
         {
             var cachedToken = string.Empty;
-            
+
             var identityApi = RestService.For<IIdentityApi>("https://localhost:5001");
             var tweetbookApi = RestService.For<IStolovkaWebApi>("https://localhost:5001", new RefitSettings
             {
@@ -23,7 +21,7 @@ namespace StolovkaWebAPI.Sdk.Sample
                 Email = "sdkaccount@gmail.com",
                 Password = "Test1234!"
             });
-            
+
             var loginResponse = await identityApi.LoginAsync(new UserLoginRequest
             {
                 Email = "sdkaccount@gmail.com",
@@ -37,7 +35,7 @@ namespace StolovkaWebAPI.Sdk.Sample
             var createdPost = await tweetbookApi.CreateAsync(new CreatePostRequest
             {
                 Name = "This is created by the SDK",
-                Tags = new []{"sdk"}
+                Tags = new[] { "sdk" }
             });
 
             var retrievedPost = await tweetbookApi.GetAsync(createdPost.Content.Data.Id);

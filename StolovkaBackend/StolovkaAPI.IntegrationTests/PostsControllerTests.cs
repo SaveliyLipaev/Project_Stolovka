@@ -1,13 +1,11 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using FluentAssertions;
 using StolovkaWebAPI.Contracts.V1;
 using StolovkaWebAPI.Contracts.V1.Requests;
 using StolovkaWebAPI.Contracts.V1.Responses;
-using StolovkaWebAPI.Domain;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace StolovkaWebAPI.IntegrationTests
@@ -36,12 +34,12 @@ namespace StolovkaWebAPI.IntegrationTests
             var createdPost = await CreatePostAsync(new CreatePostRequest
             {
                 Name = "Test post",
-                Tags = new []{ "testtag" }
+                Tags = new[] { "testtag" }
             });
 
             // Act
             var response = await TestClient.GetAsync(ApiRoutes.Posts.Get.Replace("{postId}", createdPost.Id.ToString()));
-            
+
             // Assert
             response.StatusCode.Should().Be(HttpStatusCode.OK);
             var returnedPost = await response.Content.ReadAsAsync<Response<PostResponse>>();

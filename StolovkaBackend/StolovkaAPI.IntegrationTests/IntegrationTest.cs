@@ -1,15 +1,15 @@
-using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using StolovkaWebAPI.Data;
 using StolovkaWebAPI.Contracts.V1;
 using StolovkaWebAPI.Contracts.V1.Requests;
 using StolovkaWebAPI.Contracts.V1.Responses;
+using StolovkaWebAPI.Data;
+using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace StolovkaWebAPI.IntegrationTests
 {
@@ -17,7 +17,7 @@ namespace StolovkaWebAPI.IntegrationTests
     {
         protected readonly HttpClient TestClient;
         private readonly IServiceProvider _serviceProvider;
-        
+
         protected IntegrationTest()
         {
             var appFactory = new WebApplicationFactory<Startup>()
@@ -29,7 +29,7 @@ namespace StolovkaWebAPI.IntegrationTests
                             services.AddDbContext<DataContext>(options => { options.UseInMemoryDatabase("TestDb"); });
                         });
                     });
-            
+
             _serviceProvider = appFactory.Services;
             TestClient = appFactory.CreateClient();
         }

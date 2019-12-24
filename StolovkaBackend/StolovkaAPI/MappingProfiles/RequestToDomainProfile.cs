@@ -8,7 +8,7 @@ namespace StolovkaWebAPI.MappingProfiles
     {
         public RequestToDomainProfile()
         {
-            CreateMap<PaginationQuery, PaginationFilter>();
+            //CreateMap<PaginationQuery, PaginationFilter>();
             CreateMap<GetAllPostsQuery, GetAllPostsFilter>();
         }
     }

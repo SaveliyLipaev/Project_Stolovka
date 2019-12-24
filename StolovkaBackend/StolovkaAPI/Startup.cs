@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
@@ -9,8 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using StolovkaWebAPI.Contracts.HealthChecks;
-using StolovkaWebAPI.Options;
 using StolovkaWebAPI.Installers;
+using System.Linq;
 using SwaggerOptions = StolovkaWebAPI.Options.SwaggerOptions;
 
 namespace StolovkaWebAPI
@@ -65,12 +64,12 @@ namespace StolovkaWebAPI
                     await context.Response.WriteAsync(JsonConvert.SerializeObject(response));
                 }
             });
-            
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseAuthentication();
-            
+
             var swaggerOptions = new Options.SwaggerOptions();
             Configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);
 

@@ -1,5 +1,5 @@
-using System;
 using StolovkaWebAPI.Contracts.V1.Requests.Queries;
+using System;
 
 namespace StolovkaWebAPI.Services
 {

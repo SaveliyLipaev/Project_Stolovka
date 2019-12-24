@@ -1,7 +1,7 @@
-using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
+using System;
+using System.Threading.Tasks;
 
 namespace StolovkaWebAPI.Services
 {

@@ -1,5 +1,3 @@
-using System.Dynamic;
-
 namespace StolovkaWebAPI.Contracts.V1.Requests.Queries
 {
     public class PaginationQuery

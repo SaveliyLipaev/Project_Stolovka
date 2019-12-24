@@ -18,7 +18,7 @@ namespace XamarinMobileApp.DAL.DataServices.Online
         {
             Exception exception = null;
             var result = default(T);
-            RequestResult<T> requestResult = default;
+            RequestResult<T> requestResult = default(RequestResult<T>);
 
             try
             {

@@ -11,14 +11,15 @@ namespace StolovkaWebAPI.Installers
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<DataContext>(options =>
-                options.UseSqlServer(
+            services.AddEntityFrameworkNpgsql().AddDbContext<DataContext>(options =>
+                options.UseNpgsql(
                     configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<DataContext>();
 
-            services.AddScoped<IPostService, PostService>();
+            //services.AddScoped<IPostService, PostService>();
         }
     }
 }

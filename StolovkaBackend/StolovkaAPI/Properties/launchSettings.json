@@ -8,10 +8,6 @@
     }
   },
   "profiles": {
-    "Azure Dev Spaces": {
-      "commandName": "AzureDevSpaces",
-      "launchBrowser": true
-    },
     "StolovkaAPI": {
       "commandName": "Project",
       "launchBrowser": true,

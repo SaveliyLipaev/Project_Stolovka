@@ -1,3 +1,9 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using StolovkaWebAPI.Data;
+using StolovkaWebAPI.Domain;
+using StolovkaWebAPI.Options;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -5,12 +11,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using StolovkaWebAPI.Data;
-using StolovkaWebAPI.Domain;
-using StolovkaWebAPI.Options;
 
 namespace StolovkaWebAPI.Services
 {
@@ -21,7 +21,7 @@ namespace StolovkaWebAPI.Services
         private readonly JwtSettings _jwtSettings;
         private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly DataContext _context;
-        
+
         public IdentityService(UserManager<IdentityUser> userManager, JwtSettings jwtSettings, TokenValidationParameters tokenValidationParameters, DataContext context, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
@@ -30,7 +30,7 @@ namespace StolovkaWebAPI.Services
             _context = context;
             _roleManager = roleManager;
         }
-        
+
         public async Task<AuthenticationResult> RegisterAsync(string email, string password)
         {
             var existingUser = await _userManager.FindByEmailAsync(email);
@@ -39,7 +39,7 @@ namespace StolovkaWebAPI.Services
             {
                 return new AuthenticationResult
                 {
-                    Errors = new[] {"User with this email address already exists"}
+                    Errors = new[] { "User with this email address already exists" }
                 };
             }
 
@@ -60,10 +60,10 @@ namespace StolovkaWebAPI.Services
                     Errors = createdUser.Errors.Select(x => x.Description)
                 };
             }
-            
+
             return await GenerateAuthenticationResultForUserAsync(newUser);
         }
-        
+
         public async Task<AuthenticationResult> LoginAsync(string email, string password)
         {
             var user = await _userManager.FindByEmailAsync(email);
@@ -72,7 +72,7 @@ namespace StolovkaWebAPI.Services
             {
                 return new AuthenticationResult
                 {
-                    Errors = new[] {"User does not exist"}
+                    Errors = new[] { "User does not exist" }
                 };
             }
 
@@ -82,10 +82,10 @@ namespace StolovkaWebAPI.Services
             {
                 return new AuthenticationResult
                 {
-                    Errors = new[] {"User/password combination is wrong"}
+                    Errors = new[] { "User/password combination is wrong" }
                 };
             }
-            
+
             return await GenerateAuthenticationResultForUserAsync(user);
         }
 
@@ -95,18 +95,18 @@ namespace StolovkaWebAPI.Services
 
             if (validatedToken == null)
             {
-                return new AuthenticationResult {Errors = new[] {"Invalid Token"}};
+                return new AuthenticationResult { Errors = new[] { "Invalid Token" } };
             }
 
             var expiryDateUnix =
                 long.Parse(validatedToken.Claims.Single(x => x.Type == JwtRegisteredClaimNames.Exp).Value);
-            
+
             var expiryDateTimeUtc = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
                 .AddSeconds(expiryDateUnix);
 
             if (expiryDateTimeUtc > DateTime.UtcNow)
             {
-                return new AuthenticationResult {Errors = new[] {"This token hasn't expired yet"}};
+                return new AuthenticationResult { Errors = new[] { "This token hasn't expired yet" } };
             }
 
             var jti = validatedToken.Claims.Single(x => x.Type == JwtRegisteredClaimNames.Jti).Value;
@@ -115,27 +115,27 @@ namespace StolovkaWebAPI.Services
 
             if (storedRefreshToken == null)
             {
-                return new AuthenticationResult {Errors = new[] {"This refresh token does not exist"}};
+                return new AuthenticationResult { Errors = new[] { "This refresh token does not exist" } };
             }
 
             if (DateTime.UtcNow > storedRefreshToken.ExpiryDate)
             {
-                return new AuthenticationResult {Errors = new[] {"This refresh token has expired"}};
+                return new AuthenticationResult { Errors = new[] { "This refresh token has expired" } };
             }
 
             if (storedRefreshToken.Invalidated)
             {
-                return new AuthenticationResult {Errors = new[] {"This refresh token has been invalidated"}};
+                return new AuthenticationResult { Errors = new[] { "This refresh token has been invalidated" } };
             }
 
             if (storedRefreshToken.Used)
             {
-                return new AuthenticationResult {Errors = new[] {"This refresh token has been used"}};
+                return new AuthenticationResult { Errors = new[] { "This refresh token has been used" } };
             }
 
             if (storedRefreshToken.JwtId != jti)
             {
-                return new AuthenticationResult {Errors = new[] {"This refresh token does not match this JWT"}};
+                return new AuthenticationResult { Errors = new[] { "This refresh token does not match this JWT" } };
             }
 
             storedRefreshToken.Used = true;
@@ -196,18 +196,18 @@ namespace StolovkaWebAPI.Services
             {
                 claims.Add(new Claim(ClaimTypes.Role, userRole));
                 var role = await _roleManager.FindByNameAsync(userRole);
-                if(role == null) continue;
+                if (role == null) continue;
                 var roleClaims = await _roleManager.GetClaimsAsync(role);
 
                 foreach (var roleClaim in roleClaims)
                 {
-                    if(claims.Contains(roleClaim))
+                    if (claims.Contains(roleClaim))
                         continue;
 
                     claims.Add(roleClaim);
                 }
             }
-            
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
@@ -228,7 +228,7 @@ namespace StolovkaWebAPI.Services
 
             await _context.RefreshTokens.AddAsync(refreshToken);
             await _context.SaveChangesAsync();
-            
+
             return new AuthenticationResult
             {
                 Success = true,

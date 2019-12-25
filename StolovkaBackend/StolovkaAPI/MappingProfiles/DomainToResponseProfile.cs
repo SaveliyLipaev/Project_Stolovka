@@ -1,7 +1,7 @@
-using System.Linq;
 using AutoMapper;
 using StolovkaWebAPI.Contracts.V1.Responses;
 using StolovkaWebAPI.Domain;
+using System.Linq;
 
 namespace StolovkaWebAPI.MappingProfiles
 {
@@ -9,11 +9,11 @@ namespace StolovkaWebAPI.MappingProfiles
     {
         public DomainToResponseProfile()
         {
-            CreateMap<Post, PostResponse>()
-                .ForMember(dest => dest.Tags, opt => 
-                    opt.MapFrom(src => src.Tags.Select(x => new TagResponse{Name = x.TagName})));
-            
-            CreateMap<Tag, TagResponse>();
+            //CreateMap<Post, PostResponse>()
+            //    .ForMember(dest => dest.Tags, opt =>
+            //        opt.MapFrom(src => src.Tags.Select(x => new TagResponse { Name = x.TagName })));
+
+            //CreateMap<Tag, TagResponse>();
         }
     }
 }

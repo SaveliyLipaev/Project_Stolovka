@@ -1,6 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 
 namespace StolovkaWebAPI.Authorization
 {
@@ -17,7 +17,7 @@ namespace StolovkaWebAPI.Authorization
                 context.Succeed(requirement);
                 return Task.CompletedTask;
             }
-            
+
             context.Fail();
             return Task.CompletedTask;
         }

@@ -1,8 +1,8 @@
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using StolovkaWebAPI.Contracts.V1.Responses;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace StolovkaWebAPI.Filters
 {
@@ -27,17 +27,17 @@ namespace StolovkaWebAPI.Filters
                             FieldName = error.Key,
                             Message = subError
                         };
-                        
+
                         errorResponse.Errors.Add(errorModel);
                     }
                 }
-                
+
                 context.Result = new BadRequestObjectResult(errorResponse);
                 return;
             }
-            
+
             await next();
-            
+
             // after controller
         }
     }

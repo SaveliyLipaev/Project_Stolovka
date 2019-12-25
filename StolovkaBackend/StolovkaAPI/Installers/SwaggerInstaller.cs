@@ -1,11 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace StolovkaWebAPI.Installers
 {
@@ -15,10 +15,10 @@ namespace StolovkaWebAPI.Installers
         {
             services.AddSwaggerGen(x =>
             {
-                x.SwaggerDoc("v1", new OpenApiInfo{ Title = "Stolovka API", Version = "v1" });
-                
+                x.SwaggerDoc("v1", new OpenApiInfo { Title = "Stolovka API", Version = "v1" });
+
                 x.ExampleFilters();
-                
+
                 x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization header using the bearer scheme",
@@ -32,7 +32,7 @@ namespace StolovkaWebAPI.Installers
                     {
                         Id = "Bearer",
                         Type = ReferenceType.SecurityScheme
-                    }}, new List<string>()} 
+                    }}, new List<string>()}
                 });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using FluentValidation.AspNetCore;
+﻿using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -8,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
 using StolovkaWebAPI.Authorization;
 using StolovkaWebAPI.Filters;
 using StolovkaWebAPI.Options;
 using StolovkaWebAPI.Services;
+using System.Text;
 
 namespace StolovkaWebAPI.Installers
 {
@@ -25,7 +23,7 @@ namespace StolovkaWebAPI.Installers
             services.AddSingleton(jwtSettings);
 
             services.AddScoped<IIdentityService, IdentityService>();
-            
+
             services
                 .AddMvc(options =>
                 {
@@ -46,7 +44,7 @@ namespace StolovkaWebAPI.Installers
             };
 
             services.AddSingleton(tokenValidationParameters);
-            
+
             services.AddAuthentication(x =>
                 {
                     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

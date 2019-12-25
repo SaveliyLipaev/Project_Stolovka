@@ -13,6 +13,11 @@
             public const string GetAll = Base + "/canteens";
         }
 
+        public static class Menus
+        {
+            public const string Get = Base + "/menus/{canteenId}";
+        }
+
         public static class Tags
         {
             public const string GetAll = Base + "/tags";

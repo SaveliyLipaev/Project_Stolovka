@@ -19,9 +19,9 @@ namespace StolovkaWebAPI.Services
 
         public async Task<List<Canteen>> GetAllCanteens()
         {
-            var queryable = _dataContext.Canteens.AsQueryable();
+            var queryable = _dataContext.Canteens;
 
-            return await queryable.Include(x => x.Name).Include(x => x.Worktime).ToListAsync();
+            return await queryable.ToListAsync();
         }
     }
 }

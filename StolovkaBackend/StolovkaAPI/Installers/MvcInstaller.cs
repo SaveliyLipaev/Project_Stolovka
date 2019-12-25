@@ -23,6 +23,7 @@ namespace StolovkaWebAPI.Installers
             services.AddSingleton(jwtSettings);
 
             services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<ICanteensService, CanteensService>();
 
             services
                 .AddMvc(options =>

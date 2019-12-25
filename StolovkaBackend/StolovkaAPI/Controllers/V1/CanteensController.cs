@@ -13,7 +13,7 @@ using StolovkaWebAPI.Services;
 
 namespace StolovkaWebAPI.Controllers.V1
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CanteensController : Controller
     {
         private readonly ICanteensService _canteensService;

@@ -1,21 +1,20 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using StolovkaWebAPI.Domain;
 
-namespace StolovkaWebAPI.Domain
+namespace StolovkaWebAPI.Data
 {
-    public partial class stolovka_db_v2Context : DbContext
+    public partial class StolovkaDbContext : IdentityDbContext
     {
-        public stolovka_db_v2Context()
-        {
-        }
-
-        public stolovka_db_v2Context(DbContextOptions<stolovka_db_v2Context> options)
+        public StolovkaDbContext(DbContextOptions<StolovkaDbContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Canteens> Canteens { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public virtual DbSet<Canteen> Canteens { get; set; }
         public virtual DbSet<Cards> Cards { get; set; }
         public virtual DbSet<Cashiers> Cashiers { get; set; }
         public virtual DbSet<Dishes> Dishes { get; set; }
@@ -27,13 +26,15 @@ namespace StolovkaWebAPI.Domain
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=stolovka_db_v2;Username=stolovka_supervisor;Password=stolovka123");
+                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=stolovka_db;Username=stolovka_supervisor;Password=stolovka123");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Canteens>(entity =>
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Canteen>(entity =>
             {
                 entity.ToTable("canteens");
 

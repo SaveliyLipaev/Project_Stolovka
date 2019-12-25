@@ -8,8 +8,4 @@
       <PackageReference Include="Refit" Version="4.7.51" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\StolovkaAPI.Contracts\StolovkaWebAPI.Contracts.csproj" />
-    </ItemGroup>
-
 </Project>

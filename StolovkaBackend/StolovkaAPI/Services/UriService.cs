@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.WebUtilities;
 using StolovkaWebAPI.Contracts.V1;
-using StolovkaWebAPI.Contracts.V1.Requests.Queries;
 using System;
 
 namespace StolovkaWebAPI.Services
@@ -16,22 +15,7 @@ namespace StolovkaWebAPI.Services
 
         public Uri GetPostUri(string postId)
         {
-            return new Uri(_baseUri + ApiRoutes.Posts.Get.Replace("{postId}", postId));
-        }
-
-        public Uri GetAllPostsUri(PaginationQuery pagination = null)
-        {
-            var uri = new Uri(_baseUri);
-
-            if (pagination == null)
-            {
-                return uri;
-            }
-
-            var modifiedUri = QueryHelpers.AddQueryString(_baseUri, "pageNumber", pagination.PageNumber.ToString());
-            modifiedUri = QueryHelpers.AddQueryString(modifiedUri, "pageSize", pagination.PageSize.ToString());
-
-            return new Uri(modifiedUri);
+            return null;//new Uri(_baseUri + ApiRoutes.Canteens.Get.Replace("{postId}", postId));
         }
     }
 }

@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StolovkaWebAPI.Domain
 {
-    public partial class Canteens
+    [Table("canteens")]
+    public class Canteen
     {
-        public Canteens()
-        {
-            Cashiers = new HashSet<Cashiers>();
-            Dishes = new HashSet<Dishes>();
-            Orders = new HashSet<Orders>();
-        }
-
+        [Key]
         public string Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }

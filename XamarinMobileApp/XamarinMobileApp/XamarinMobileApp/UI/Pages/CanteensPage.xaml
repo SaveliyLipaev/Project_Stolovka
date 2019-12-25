@@ -6,7 +6,7 @@
              xmlns:controls="clr-namespace:XamarinMobileApp.UI.Controls"
              xmlns:pages="clr-namespace:XamarinMobileApp.UI.Pages;assembly=XamarinMobileApp"
              x:Class="XamarinMobileApp.UI.Pages.CanteensPage"
-             Title="Stolovki">
+             Title="Canteens">
     <ContentPage.Resources>
         <ResourceDictionary>
             <c:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
@@ -14,11 +14,11 @@
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <controls:BadgeToolbarItem Icon="profile" 
-                                   Text="Настройки" 
+                                   Text="Profile" 
                                    BadgeColor="{StaticResource badgeColor}"
                                    BadgePressedColor="{StaticResource badgeColor}"
                                    Command="{Binding GoToProfile}" Priority="0" Order="Secondary"/>
-        <controls:BadgeToolbarItem Text="Выход" Priority="1" Order="Secondary"
+        <controls:BadgeToolbarItem Text="Log out" Priority="1" Order="Secondary"
                                    Command="{Binding ExitAccount}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

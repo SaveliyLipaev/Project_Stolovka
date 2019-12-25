@@ -6,7 +6,7 @@
              xmlns:c="clr-namespace:Pillar;assembly=Pillar"
              xmlns:pages="clr-namespace:XamarinMobileApp.UI.Pages;assembly=XamarinMobileApp"
              x:Class="XamarinMobileApp.UI.Pages.FoodMenuPage"
-             Title="Mеню">
+             Title="Menu">
     <ContentPage.Resources>
         <ResourceDictionary>
             <c:ItemTappedEventArgsConverter x:Key="ItemTappedConverter" />
@@ -37,7 +37,7 @@
                                     <StackLayout Grid.Column="1" VerticalOptions="Center">
                                         <Label Text="{Binding Name}" Style="{StaticResource labelStyle}"
                                                    LineBreakMode="TailTruncation" />
-                                        <Label Text="{Binding Price, StringFormat='Цена: {0} Р.'}" Style="{StaticResource labelStyle}"
+                                        <Label Text="{Binding Price, StringFormat='Price: {0} Р.'}" Style="{StaticResource labelStyle}"
                                                FontSize="Small" LineBreakMode="TailTruncation"/>
                                     </StackLayout>
                                     <controls:AnimateButton Margin="5" BorderColor="{StaticResource grayPrimary}" Text="+" FontSize="Large" BackgroundColor="{StaticResource lightOrange}" Grid.Column="2" 

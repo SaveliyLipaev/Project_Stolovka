@@ -18,15 +18,18 @@
             public const string Get = Base + "/menus/{canteenId}";
         }
 
-        public static class Tags
+        public static class Orders
         {
-            public const string GetAll = Base + "/tags";
+            public const string Get = Base + "/orders/{orderId}";
 
-            public const string Get = Base + "/tags/{tagName}";
+            public const string Send = Base + "/orders";
+        }
 
-            public const string Create = Base + "/tags";
+        public static class Users
+        {
+            public const string Get = Base + "/users/{userId}";
 
-            public const string Delete = Base + "/tags/{tagName}";
+            public const string Put = Base + "/users/{userId}";
         }
 
         public static class Identity
@@ -36,6 +39,8 @@
             public const string Register = Base + "/identity/register";
 
             public const string Refresh = Base + "/identity/refresh";
+
+            public const string MobileUserLogin = Base + "/identity/mobileuserlogin";
         }
     }
 }

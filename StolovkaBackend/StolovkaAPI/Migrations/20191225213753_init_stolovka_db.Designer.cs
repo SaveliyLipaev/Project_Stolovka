@@ -10,15 +10,15 @@ using StolovkaWebAPI.Data;
 namespace StolovkaWebAPI.Migrations
 {
     [DbContext(typeof(StolovkaDbContext))]
-    [Migration("20191225170247_pls_god")]
-    partial class pls_god
+    [Migration("20191225213753_init_stolovka_db")]
+    partial class init_stolovka_db
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "3.1.0")
+                .HasAnnotation("ProductVersion", "3.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -222,168 +222,118 @@ namespace StolovkaWebAPI.Migrations
             modelBuilder.Entity("StolovkaWebAPI.Domain.Canteen", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnName("id")
-                        .HasColumnType("character varying(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("text");
 
                     b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnName("address")
-                        .HasColumnType("character varying(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnName("name")
-                        .HasColumnType("character varying(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("text");
 
                     b.Property<string>("Worktime")
-                        .IsRequired()
-                        .HasColumnName("worktime")
-                        .HasColumnType("character varying(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("canteens");
                 });
 
-            modelBuilder.Entity("StolovkaWebAPI.Domain.Cards", b =>
+            modelBuilder.Entity("StolovkaWebAPI.Domain.Card", b =>
                 {
                     b.Property<string>("CardNumberCrypted")
-                        .HasColumnName("card_number_crypted")
-                        .HasColumnType("character varying(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("AddedAt")
-                        .HasColumnName("added_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("RecognizeableName")
-                        .HasColumnName("recognizeable_name")
-                        .HasColumnType("character varying");
+                        .HasColumnType("text");
 
-                    b.HasKey("CardNumberCrypted")
-                        .HasName("cards_pkey");
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
 
-                    b.ToTable("cards");
+                    b.HasKey("CardNumberCrypted");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Cards");
                 });
 
             modelBuilder.Entity("StolovkaWebAPI.Domain.Cashiers", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnName("id")
-                        .HasColumnType("character varying(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("text");
 
                     b.Property<string>("CanteenId")
-                        .IsRequired()
-                        .HasColumnName("canteen_id")
-                        .HasColumnType("character varying");
+                        .HasColumnType("text");
 
                     b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnName("login")
-                        .HasColumnType("character varying(65)")
-                        .HasMaxLength(65);
+                        .HasColumnType("text");
 
                     b.Property<string>("PasswordCrypted")
-                        .IsRequired()
-                        .HasColumnName("password_crypted")
-                        .HasColumnType("character varying");
+                        .HasColumnType("text");
 
                     b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnName("role")
-                        .HasColumnType("character varying");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CanteenId");
 
-                    b.HasIndex("Login")
-                        .IsUnique()
-                        .HasName("cashiers_login_key");
-
-                    b.ToTable("cashiers");
+                    b.ToTable("Cashiers");
                 });
 
-            modelBuilder.Entity("StolovkaWebAPI.Domain.Dishes", b =>
+            modelBuilder.Entity("StolovkaWebAPI.Domain.Dish", b =>
                 {
                     b.Property<string>("DishId")
-                        .HasColumnName("dish_id")
-                        .HasColumnType("character varying(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("text");
 
                     b.Property<string>("CanteenId")
-                        .IsRequired()
-                        .HasColumnName("canteen_id")
-                        .HasColumnType("character varying");
+                        .HasColumnType("text");
 
                     b.Property<string>("DishName")
-                        .IsRequired()
-                        .HasColumnName("dish_name")
-                        .HasColumnType("character varying(65)")
-                        .HasMaxLength(65);
+                        .HasColumnType("text");
 
                     b.Property<decimal>("DishPrice")
-                        .HasColumnName("dish_price")
                         .HasColumnType("numeric");
 
-                    b.HasKey("DishId")
-                        .HasName("dishes_pkey");
+                    b.HasKey("DishId");
 
                     b.HasIndex("CanteenId");
 
-                    b.ToTable("dishes");
+                    b.ToTable("Dishes");
                 });
 
-            modelBuilder.Entity("StolovkaWebAPI.Domain.Orders", b =>
+            modelBuilder.Entity("StolovkaWebAPI.Domain.Order", b =>
                 {
                     b.Property<string>("OrderId")
-                        .HasColumnName("order_id")
-                        .HasColumnType("character varying(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("text");
 
                     b.Property<string>("CanteenId")
-                        .IsRequired()
-                        .HasColumnName("canteen_id")
-                        .HasColumnType("character varying(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnName("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnName("description")
-                        .HasColumnType("character varying");
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("ProcessedAt")
-                        .HasColumnName("processed_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnName("status")
-                        .HasColumnType("character varying");
+                        .HasColumnType("text");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnName("user_id")
-                        .HasColumnType("character varying(255)")
-                        .HasMaxLength(255);
+                        .HasColumnType("text");
 
-                    b.HasKey("OrderId")
-                        .HasName("orders_pkey");
+                    b.HasKey("OrderId");
 
                     b.HasIndex("CanteenId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("orders");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("StolovkaWebAPI.Domain.RefreshToken", b =>
@@ -417,50 +367,26 @@ namespace StolovkaWebAPI.Migrations
                     b.ToTable("RefreshTokens");
                 });
 
-            modelBuilder.Entity("StolovkaWebAPI.Domain.Users", b =>
+            modelBuilder.Entity("StolovkaWebAPI.Domain.User", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnName("id")
-                        .HasColumnType("character varying(255)")
-                        .HasMaxLength(255);
-
-                    b.Property<string>("Card")
-                        .HasColumnName("card")
-                        .HasColumnType("character varying");
+                        .HasColumnType("text");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnName("email")
-                        .HasColumnType("character varying");
+                        .HasColumnType("text");
 
                     b.Property<string>("Firstname")
-                        .HasColumnName("firstname")
-                        .HasColumnType("character varying(65)")
-                        .HasMaxLength(65);
+                        .HasColumnType("text");
 
                     b.Property<string>("Lastname")
-                        .HasColumnName("lastname")
-                        .HasColumnType("character varying(65)")
-                        .HasMaxLength(65);
+                        .HasColumnType("text");
 
                     b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnName("token")
-                        .HasColumnType("character varying");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Card");
-
-                    b.HasIndex("Email")
-                        .IsUnique()
-                        .HasName("users_email_key");
-
-                    b.HasIndex("Token")
-                        .IsUnique()
-                        .HasName("users_token_key");
-
-                    b.ToTable("users");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -514,37 +440,36 @@ namespace StolovkaWebAPI.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("StolovkaWebAPI.Domain.Card", b =>
+                {
+                    b.HasOne("StolovkaWebAPI.Domain.User", "User")
+                        .WithMany("Cards")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("StolovkaWebAPI.Domain.Cashiers", b =>
                 {
                     b.HasOne("StolovkaWebAPI.Domain.Canteen", "Canteen")
                         .WithMany("Cashiers")
-                        .HasForeignKey("CanteenId")
-                        .HasConstraintName("cashiers_canteen_id_fkey")
-                        .IsRequired();
+                        .HasForeignKey("CanteenId");
                 });
 
-            modelBuilder.Entity("StolovkaWebAPI.Domain.Dishes", b =>
+            modelBuilder.Entity("StolovkaWebAPI.Domain.Dish", b =>
                 {
                     b.HasOne("StolovkaWebAPI.Domain.Canteen", "Canteen")
                         .WithMany("Dishes")
-                        .HasForeignKey("CanteenId")
-                        .HasConstraintName("dishes_canteen_id_fkey")
-                        .IsRequired();
+                        .HasForeignKey("CanteenId");
                 });
 
-            modelBuilder.Entity("StolovkaWebAPI.Domain.Orders", b =>
+            modelBuilder.Entity("StolovkaWebAPI.Domain.Order", b =>
                 {
                     b.HasOne("StolovkaWebAPI.Domain.Canteen", "Canteen")
                         .WithMany("Orders")
-                        .HasForeignKey("CanteenId")
-                        .HasConstraintName("orders_canteen_id_fkey")
-                        .IsRequired();
+                        .HasForeignKey("CanteenId");
 
-                    b.HasOne("StolovkaWebAPI.Domain.Users", "User")
+                    b.HasOne("StolovkaWebAPI.Domain.User", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("orders_user_id_fkey")
-                        .IsRequired();
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("StolovkaWebAPI.Domain.RefreshToken", b =>
@@ -552,14 +477,6 @@ namespace StolovkaWebAPI.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("StolovkaWebAPI.Domain.Users", b =>
-                {
-                    b.HasOne("StolovkaWebAPI.Domain.Cards", "CardNavigation")
-                        .WithMany("Users")
-                        .HasForeignKey("Card")
-                        .HasConstraintName("users_card_fkey");
                 });
 #pragma warning restore 612, 618
         }

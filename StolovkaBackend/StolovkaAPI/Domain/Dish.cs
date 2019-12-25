@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StolovkaWebAPI.Domain
 {
-    public partial class Dishes
+    public partial class Dish
     {
         [Key]
         public string DishId { get; set; }

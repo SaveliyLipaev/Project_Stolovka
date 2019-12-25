@@ -12,7 +12,6 @@ namespace StolovkaWebAPI.Domain
         public string PasswordCrypted { get; set; }
         public string CanteenId { get; set; }
         public string Role { get; set; }
-
         public virtual Canteen Canteen { get; set; }
     }
 }

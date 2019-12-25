@@ -84,5 +84,13 @@ namespace StolovkaWebAPI.Controllers.V1
                 RefreshToken = authResponse.RefreshToken
             });
         }
+
+        //[HttpPost(ApiRoutes.Identity.MobileUserLogin)]
+        //public async Task<IActionResult> MobileUserLogin([FromBody] MobileUserLoginRequest request)
+        //{
+
+        //}
+
+
     }
 }

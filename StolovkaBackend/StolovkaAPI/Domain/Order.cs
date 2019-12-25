@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StolovkaWebAPI.Domain
 {
-    public partial class Orders
+    public partial class Order
     {
         [Key]
         public string OrderId { get; set; }
@@ -16,6 +16,6 @@ namespace StolovkaWebAPI.Domain
         public string Description { get; set; }
 
         public virtual Canteen Canteen { get; set; }
-        public virtual Users User { get; set; }
+        public virtual User User { get; set; }
     }
 }

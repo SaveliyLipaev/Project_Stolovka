@@ -1,3 +1,10 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -5,36 +12,29 @@ using StolovkaWebAPI.Contracts.V1.Requests;
 using StolovkaWebAPI.Data;
 using StolovkaWebAPI.Domain;
 using StolovkaWebAPI.Options;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StolovkaWebAPI.Services
 {
-    public class IdentityService : IIdentityService
+    public class MobileUserIdentityService : IIdentityService
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<IdentityUser> _mobileUserManager;
+        private readonly RoleManager<IdentityRole> _mobileRoleManager;
         private readonly JwtSettings _jwtSettings;
         private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly StolovkaDbContext _context;
 
-        public IdentityService(UserManager<IdentityUser> userManager, JwtSettings jwtSettings, TokenValidationParameters tokenValidationParameters, StolovkaDbContext context, RoleManager<IdentityRole> roleManager)
+        public MobileUserIdentityService(UserManager<IdentityUser> userManager, JwtSettings jwtSettings, TokenValidationParameters tokenValidationParameters, StolovkaDbContext context, RoleManager<IdentityRole> roleManager)
         {
-            _userManager = userManager;
+            _mobileUserManager = userManager;
             _jwtSettings = jwtSettings;
             _tokenValidationParameters = tokenValidationParameters;
             _context = context;
-            _roleManager = roleManager;
+            _mobileRoleManager = roleManager;
         }
 
         public async Task<AuthenticationResult> RegisterAsync(string email, string password)
         {
-            var existingUser = await _userManager.FindByEmailAsync(email);
+            var existingUser = await _mobileUserManager.FindByEmailAsync(email);
 
             if (existingUser != null)
             {
@@ -52,7 +52,7 @@ namespace StolovkaWebAPI.Services
                 UserName = email
             };
 
-            var createdUser = await _userManager.CreateAsync(newUser, password);
+            var createdUser = await _mobileUserManager.CreateAsync(newUser, password);
 
             if (!createdUser.Succeeded)
             {
@@ -67,7 +67,7 @@ namespace StolovkaWebAPI.Services
 
         public async Task<AuthenticationResult> LoginAsync(string email, string password)
         {
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await _mobileUserManager.FindByEmailAsync(email);
 
             if (user == null)
             {
@@ -77,7 +77,7 @@ namespace StolovkaWebAPI.Services
                 };
             }
 
-            var userHasValidPassword = await _userManager.CheckPasswordAsync(user, password);
+            var userHasValidPassword = await _mobileUserManager.CheckPasswordAsync(user, password);
 
             if (!userHasValidPassword)
             {
@@ -88,11 +88,6 @@ namespace StolovkaWebAPI.Services
             }
 
             return await GenerateAuthenticationResultForUserAsync(user);
-        }
-
-        public Task<AuthenticationResult> MobileUserLogin(MobileUserLoginRequest mobileUser)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<AuthenticationResult> RefreshTokenAsync(string token, string refreshToken)
@@ -148,7 +143,7 @@ namespace StolovkaWebAPI.Services
             _context.RefreshTokens.Update(storedRefreshToken);
             await _context.SaveChangesAsync();
 
-            var user = await _userManager.FindByIdAsync(validatedToken.Claims.Single(x => x.Type == "id").Value);
+            var user = await _mobileUserManager.FindByIdAsync(validatedToken.Claims.Single(x => x.Type == "id").Value);
             return await GenerateAuthenticationResultForUserAsync(user);
         }
 
@@ -194,16 +189,16 @@ namespace StolovkaWebAPI.Services
                 new Claim("id", user.Id)
             };
 
-            var userClaims = await _userManager.GetClaimsAsync(user);
+            var userClaims = await _mobileUserManager.GetClaimsAsync(user);
             claims.AddRange(userClaims);
 
-            var userRoles = await _userManager.GetRolesAsync(user);
+            var userRoles = await _mobileUserManager.GetRolesAsync(user);
             foreach (var userRole in userRoles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, userRole));
-                var role = await _roleManager.FindByNameAsync(userRole);
+                var role = await _mobileRoleManager.FindByNameAsync(userRole);
                 if (role == null) continue;
-                var roleClaims = await _roleManager.GetClaimsAsync(role);
+                var roleClaims = await _mobileRoleManager.GetClaimsAsync(role);
 
                 foreach (var roleClaim in roleClaims)
                 {

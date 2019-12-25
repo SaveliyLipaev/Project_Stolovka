@@ -15,7 +15,7 @@ namespace StolovkaWebAPI.Domain
         public string Worktime { get; set; }
 
         public virtual ICollection<Cashiers> Cashiers { get; set; }
-        public virtual ICollection<Dishes> Dishes { get; set; }
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Dish> Dishes { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

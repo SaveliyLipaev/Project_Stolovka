@@ -12,9 +12,9 @@ namespace XamarinMobileApp.DAL.DataServices.Online
         Task<CanteenSetDataObject> GetAllCanteens(CancellationToken cts);
 
         [Get("/api/v1/menus/{canteenId}")]
-        Task<MenuDataObject> GetMenu(string idCanteen, CancellationToken cts);
+        Task<MenuDataObject> GetMenu(string canteenId, CancellationToken cts);
 
-        [Post("/api/v1/buy")]
+        [Post("/api/v1/orders")]
         Task<string> SendOrder([Body]RequestOrderDataObject order, CancellationToken cts);
 
         [Get("/api/v1/orders/{orderId}")]

@@ -19,7 +19,7 @@ namespace XamarinMobileApp.DAL.DataServices.Mock
 
 		protected async Task<RequestResult<T>> GetMockData<T>(string fileName) where T : class
 		{
-			if (UseDelay) await Delay();
+			//if (UseDelay) await Delay();
 
 			try
 			{

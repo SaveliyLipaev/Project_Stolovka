@@ -5,10 +5,8 @@
              x:Class="XamarinMobileApp.UI.Pages.OrderPaymentPage"
              Title="Оплата">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Оплата в будущем может быть"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        
+        
     </ContentPage.Content>
+
 </pages:BasePage>

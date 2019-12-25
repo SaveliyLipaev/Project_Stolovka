@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace XamarinMobileApp.DAL.DataObjects
 {
@@ -11,7 +12,11 @@ namespace XamarinMobileApp.DAL.DataObjects
         public string Token { get; set; }
         public string Distributor { get; set; }
         public DateTimeOffset ExpireAt { get; set; }
+
+        [JsonIgnore]
         public LoginState LoginState { get; set; }
+
+        [JsonIgnore]
         public string ErrorString { get; set; }
     }
 

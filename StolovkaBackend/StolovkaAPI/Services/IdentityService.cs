@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using StolovkaWebAPI.Contracts.V1.Requests;
 using StolovkaWebAPI.Data;
 using StolovkaWebAPI.Domain;
 using StolovkaWebAPI.Options;
@@ -20,9 +21,9 @@ namespace StolovkaWebAPI.Services
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly JwtSettings _jwtSettings;
         private readonly TokenValidationParameters _tokenValidationParameters;
-        private readonly DataContext _context;
+        private readonly StolovkaDbContext _context;
 
-        public IdentityService(UserManager<IdentityUser> userManager, JwtSettings jwtSettings, TokenValidationParameters tokenValidationParameters, DataContext context, RoleManager<IdentityRole> roleManager)
+        public IdentityService(UserManager<IdentityUser> userManager, JwtSettings jwtSettings, TokenValidationParameters tokenValidationParameters, StolovkaDbContext context, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _jwtSettings = jwtSettings;
@@ -87,6 +88,11 @@ namespace StolovkaWebAPI.Services
             }
 
             return await GenerateAuthenticationResultForUserAsync(user);
+        }
+
+        public Task<AuthenticationResult> MobileUserLogin(MobileUserLoginRequest mobileUser)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<AuthenticationResult> RefreshTokenAsync(string token, string refreshToken)

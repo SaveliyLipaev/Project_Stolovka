@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 
 namespace StolovkaWebAPI.Authorization
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class WorksForCompanyHandler : AuthorizationHandler<WorksForCompanyRequirement>
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, WorksForCompanyRequirement requirement)

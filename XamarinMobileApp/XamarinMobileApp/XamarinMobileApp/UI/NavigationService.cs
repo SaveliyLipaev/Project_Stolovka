@@ -191,9 +191,7 @@ namespace XamarinMobileApp.UI
         }
 
         private void CustomPush(Page newPage, TaskCompletionSource<bool> pushInfoOnCompletedTask)
-        {
-            // TODO: Implement your own navigation stack manipulation using popInfo
-        }
+        { }
 
         private void Pop(NavigationPopInfo popInfo)
         {
@@ -230,9 +228,7 @@ namespace XamarinMobileApp.UI
         }
 
         private void CustomPop(TaskCompletionSource<bool> completed)
-        {
-            // TODO: Implement your own navigation stack manipulation using popInfo
-        }
+        { }
 
         private void NormalPop(TaskCompletionSource<bool> completed)
         {

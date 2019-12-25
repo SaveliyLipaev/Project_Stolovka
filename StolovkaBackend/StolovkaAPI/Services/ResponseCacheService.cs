@@ -14,6 +14,10 @@ namespace StolovkaWebAPI.Services
             _distributedCache = distributedCache;
         }
 
+        /// <summary>
+        /// Implements request caching.
+        /// </summary>
+        /// <param name="timeTimeLive">Cache expiration time</param>
         public async Task CacheResponseAsync(string cacheKey, object response, TimeSpan timeTimeLive)
         {
             if (response == null)

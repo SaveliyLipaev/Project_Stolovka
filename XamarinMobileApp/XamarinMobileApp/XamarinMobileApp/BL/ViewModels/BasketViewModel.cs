@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using XamarinMobileApp.DAL.DataObjects;
+using XamarinMobileApp.DAL.DataServices;
 using XamarinMobileApp.Helpers;
 
 namespace XamarinMobileApp.BL.ViewModels
@@ -13,10 +15,40 @@ namespace XamarinMobileApp.BL.ViewModels
             set => Set(value);
         }
 
+        public CardInfoDataObject SelectedCard
+        {
+            get => Get<CardInfoDataObject>();
+            set => Set(value);
+        }
+
         public List<DishDataObject> BasketList
         {
             get => Get<List<DishDataObject>>();
             set => Set(value);
+        }
+
+        public List<CardInfoDataObject> Cards
+        {
+            get => Get<List<CardInfoDataObject>>();
+            set => Set(value);
+        }
+
+        protected override async Task LoadDataAsync()
+        {
+            if (!IsConnected)
+            {
+                State = PageState.NoInternet;
+                return;
+            }
+
+            ShowLoading("Загрузка");
+            var result = await DataServices.User.GetUserInfo("1", CancellationToken);
+            Cards = result.Data.Cards;
+            if (Cards.Count != 0)
+            {
+                SelectedCard = Cards[0];
+            }
+            HideLoading();
         }
 
         public override void OnSetNavigationParams(Dictionary<string, object> navigationParams)

@@ -8,6 +8,9 @@ using XamarinMobileApp.UI;
 using XamarinMobileApp.UI.Pages;
 using System.Reactive.Linq;
 using XamarinMobileApp.DAL.DataObjects;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace XamarinMobileApp
 {
@@ -28,7 +31,8 @@ namespace XamarinMobileApp
 
         protected override void OnStart()
         {
-
+            AppCenter.Start("android=e3a65490-aa4d-4773-9733-b07de64c25ae;",
+                  typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnSleep()

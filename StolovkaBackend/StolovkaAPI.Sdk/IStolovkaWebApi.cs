@@ -22,4 +22,5 @@ namespace StolovkaWebAPI.Sdk
     //    [Delete("/api/v1/posts/{postId}")]
     //    Task<ApiResponse<string>> DeleteAsync(Guid postId);
     //}
+    
 }

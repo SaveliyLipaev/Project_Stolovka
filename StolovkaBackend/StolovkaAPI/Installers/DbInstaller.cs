@@ -24,6 +24,7 @@ namespace StolovkaWebAPI.Installers
                 .AddEntityFrameworkStores<StolovkaDbContext>();
 
             services.AddScoped<ICanteensService, CanteensService>();
+
         }
     }
 }

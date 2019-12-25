@@ -37,7 +37,6 @@ namespace StolovkaWebAPI
 
             await host.RunAsync();
         }
-
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();

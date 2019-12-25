@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace StolovkaWebAPI.IntegrationTests
 {
+    
     //public class IntegrationTest : IDisposable
     //{
     //    protected readonly HttpClient TestClient;

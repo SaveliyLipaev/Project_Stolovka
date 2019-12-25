@@ -8,7 +8,6 @@ namespace StolovkaWebAPI.Sdk.Sample
         static async Task Main(string[] args)
         {
             //    var cachedToken = string.Empty;
-
             //    var identityApi = RestService.For<IIdentityApi>("https://localhost:5001");
             //    var tweetbookApi = RestService.For<IStolovkaWebApi>("https://localhost:5001", new RefitSettings
             //    {

@@ -32,10 +32,7 @@ namespace XamarinMobileApp.DAL.DataServices
                 };
 
                 _identityAPI = RestService.For<IIdentityAPI>(client);
-                _stolovkaAPI = RestService.For<IStolovkaAPI>(client, new RefitSettings
-                {
-                    AuthorizationHeaderValueGetter = async () => await Task.FromResult(await BlobCache.Secure.GetObject<string>("token"))
-                }) ;
+                _stolovkaAPI = RestService.For<IStolovkaAPI>(client);
 
                 Menu = new Online.MenuDataServiceOnline(_stolovkaAPI);
                 Canteens = new Online.CanteenDataServiceOnline(_stolovkaAPI);

@@ -7,6 +7,7 @@ namespace StolovkaWebAPI.Contracts.V1.Responses
 {
     public class GetAllCanteensResponse
     {
+
         public List<Canteen> Canteens { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace XamarinMobileApp
 
             Akavache.Registrations.Start("XamarinMobileApp");
 
-            NavigationService.Init(Pages.Canteens);
+            NavigationService.Init(Pages.SignIn);
         }
 
         protected override void OnStart()

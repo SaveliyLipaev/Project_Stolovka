@@ -26,7 +26,6 @@ namespace StolovkaWebAPI.Controllers.V1
         }
 
         [HttpGet(ApiRoutes.Canteens.GetAll)]
-        //[Cached(600)]
         public async Task<IActionResult> GetAll()
         {
             var canteens = await _canteensService.GetAllCanteens();

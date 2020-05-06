@@ -9,7 +9,6 @@ namespace StolovkaWebAPI.HealthChecks
     public class RedisHealthCheck : IHealthCheck
     {
         private readonly IConnectionMultiplexer _connectionMultiplexer;
-
         public RedisHealthCheck(IConnectionMultiplexer connectionMultiplexer)
         {
             _connectionMultiplexer = connectionMultiplexer;

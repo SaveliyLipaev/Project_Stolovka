@@ -147,6 +147,11 @@ namespace StolovkaWebAPI.Services
             return await GenerateAuthenticationResultForUserAsync(user);
         }
 
+        public Task<AuthenticationResult> MobileUserLogin(MobileUserLoginRequest mobileUser)
+        {
+          throw new NotImplementedException();
+        }
+
         private ClaimsPrincipal GetPrincipalFromToken(string token)
         {
             var tokenHandler = new JwtSecurityTokenHandler();

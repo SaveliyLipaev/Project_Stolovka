@@ -6,5 +6,6 @@ namespace StolovkaWebAPI.Contracts.V1.Responses
 {
     class Response
     {
+
     }
 }

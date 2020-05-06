@@ -11,7 +11,6 @@ namespace StolovkaWebAPI.Services
     public class CanteensService : ICanteensService
     {
         private readonly StolovkaDbContext _dataContext;
-
         public CanteensService(StolovkaDbContext dataContext)
         {
             _dataContext = dataContext;
